@@ -1,0 +1,20 @@
+# Microsoft Agent Framework planner -- the OPTIONAL second path.
+#
+# These install into .venv-maf, NOT the .venv the demo runs on. That
+# separation is deliberate: the stub planner must stay bootable even if this
+# whole stack breaks, and it drags in openai, pydantic and opentelemetry.
+#
+#     .\setup.ps1 -Maf
+#
+# NOTE FOR ARM64 WINDOWS
+# Install the two component packages, NOT the `agent-framework` meta-package.
+# The meta-package pulls grpcio, cryptography and pydantic-monty, none of which
+# publish win_arm64 wheels -- pip falls back to building them from source and
+# needs Rust plus MSVC C++ build tools. The two packages below are pure wheels
+# on ARM64 and install in seconds.
+
+duckdb>=1.0
+PyYAML>=6.0
+
+agent-framework-core>=1.13,<2
+agent-framework-openai>=1.12,<2

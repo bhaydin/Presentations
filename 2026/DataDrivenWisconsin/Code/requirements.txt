@@ -1,0 +1,7 @@
+# Scout AgentOps demo -- deliberately tiny.
+# Nothing here needs network access at runtime.
+duckdb>=1.0
+PyYAML>=6.0
+
+# Optional: only if you wire up the real Azure OpenAI planner before Wednesday.
+# openai>=1.40

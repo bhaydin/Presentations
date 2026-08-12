@@ -1,0 +1,51 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+.venv-*/
+venv/
+env/
+
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+
+# Test, coverage, type-checker, and linter caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+# Packaging and build output
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# IDE and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Generated demo state (rebuilt by setup/reset scripts)
+scout.duckdb
+traces.jsonl
+.control/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
