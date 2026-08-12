@@ -1,7 +1,7 @@
 <#
   Scout AgentOps demo driver -- Data-Driven Wisconsin 2026.
 
-      .\demo.ps1 reset     back to green. run this before every rehearsal.
+      .\demo.ps1 reset     restore the green baseline.
       .\demo.ps1 1         green baseline: agent answers correctly
       .\demo.ps1 2         green evals: 20/20, gate clear
       .\demo.ps1 3         THE CHANGE: firmware 2.2 rollout
@@ -11,9 +11,9 @@
       .\demo.ps1 7         data eval names the root cause
       .\demo.ps1 8         approval gate holds a write
       .\demo.ps1 9         kill switch
-      .\demo.ps1 all       every beat, pausing between each (rehearsal)
+      .\demo.ps1 all       every beat, pausing between each
 
-  One beat per command. Run them one at a time from the stage.
+  One beat per command. Run them individually to inspect each transition.
   Everything printed fits in 72 columns.
 #>
 
@@ -164,7 +164,7 @@ switch ($Beat) {
 
   Scout AgentOps demo -- Data-Driven Wisconsin 2026
 
-    .\demo.ps1 reset     back to green. run before every rehearsal.
+    .\demo.ps1 reset     restore the green baseline
     .\demo.ps1 1         green baseline: agent answers correctly
     .\demo.ps1 2         green evals: 20/20, gate clear
     .\demo.ps1 3         THE CHANGE: firmware 2.2 rollout

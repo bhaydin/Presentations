@@ -1,11 +1,10 @@
 # Walking through the code
 
-Written for someone who does not live in Python. Every section gives you the
-plain-English version first, the code second, and the sentence to say out loud
-third.
+Written for someone who does not live in Python. Every section gives the
+plain-English version first, the code second, and the main takeaway third.
 
-You do not need to understand all 1,100 lines. You need to be able to open six
-files on a projector and say something true and interesting about each one.
+You do not need to understand all 1,100 lines to learn from the example. Start
+with the six files highlighted below and follow one question through the system.
 
 ---
 
@@ -17,7 +16,8 @@ called a trace. A vendor firmware update quietly shifts timestamps on eight of
 the twelve cameras. Nothing errors, the agent keeps answering confidently, and
 the only thing that notices is the eval suite.
 
-**Say:** *"There is no magic in here. It's a database, five tools, and a test suite."*
+**Key takeaway:** *There is no magic in here. It is a database, five tools, and
+a test suite.*
 
 ---
 
@@ -34,7 +34,7 @@ Then, forever after:
 ```powershell
 .\demo.ps1 reset     # back to green
 .\demo.ps1 1         # ... through 9
-.\demo.ps1 all       # full rehearsal, pauses between beats
+.\demo.ps1 all       # full sequence, pauses between beats
 ```
 
 `setup.ps1` builds a private Python environment in `.venv` and installs the two
@@ -52,7 +52,7 @@ works whether or not it is "activated."
 ```
 Python/
 ├── setup.ps1              run once
-├── demo.ps1               run this on stage
+├── demo.ps1               replay the demonstration sequence
 ├── demo.sh                same thing for Mac/Linux
 ├── requirements.txt       the two libraries: duckdb, PyYAML
 │
@@ -80,14 +80,14 @@ builds. `evals/` is the thing everybody skips.**
 
 > **A note on `__init__.py`:** you will see an empty-looking file by that name in
 > both folders. It marks the folder as importable. That is its entire job. If
-> someone asks, "it's what lets `scout/` be addressed as a unit" is a complete
-> answer.
+> its presence lets `scout/` be addressed as an importable unit.
 
 ---
 
 ## 4. Follow one question all the way through
 
-This is the section worth rehearsing. One question, five stops.
+This is the best place to start reviewing the implementation: one question,
+five stops.
 
 **The question:** *"what time should I sit Bean Field in October 2025?"*
 
@@ -98,15 +98,15 @@ six labels: `PEAK`, `COUNT`, `WIND`, `NOTIFY`, `REGULATION`.
 
 "what time" → `PEAK`.
 
-There is a comment worth reading aloud at line 159:
+There is a comment worth noticing at line 159:
 
 ```python
 # PEAK must be tested BEFORE wind: "what time should I sit" contains
 # "should i sit" and would otherwise be routed to the wind rule engine.
 ```
 
-**Say:** *"Order matters in a router, and that comment is a bug someone already
-paid for."*
+**Key takeaway:** *Order matters in a router, and this comment records a bug
+that has already been found and fixed.*
 
 ### Stop 2 — `agent.py`, `_extract()` (line 103)
 
@@ -133,8 +133,8 @@ hour, sort by count, take the top row.
 Every step above recorded itself. Not the agent's *summary* of what it did —
 the actual SQL, the actual parameters, the actual row count.
 
-**Say:** *"The trace is not a log. A log is what the program says about itself.
-This is the query that hit the warehouse."*
+**Key takeaway:** *The trace is not a summary of what the program says it did;
+it contains the query that actually hit the warehouse.*
 
 ### Stop 5 — back in `agent.py`, `_run_stub()` (line 173)
 
@@ -147,18 +147,18 @@ After the firmware rollout: `11:00`. Same code, both times.
 
 ### `scout/schema.sql` — the five tables
 
-Read the comment at the top. It is the whole demo in six lines: `detections`
+The comment at the top summarizes the scenario in six lines: `detections`
 has **no timezone column**. `captured_at` is a bare timestamp with nothing
 recording what clock it came off.
 
-**Say:** *"That one missing column is what makes everything after this possible.
-It is also in production in your building right now."*
+**Key takeaway:** *One missing column makes everything after this possible, and
+the same modeling gap can exist in production systems.*
 
 Also note `sits` (line 57) — the outcome table. Which nights you actually sat,
 what you actually saw. Almost nobody has this.
 
-**Say:** *"Without an outcome table you cannot tell a bad recommendation from
-bad luck."*
+**Key takeaway:** *Without an outcome table, a bad recommendation cannot be
+distinguished from bad luck.*
 
 ### `scout/build_db.py` — invents the data
 
@@ -173,33 +173,31 @@ Makes four seasons of believable detections. Three things make it believable:
 It uses a fixed **seed** (line 24), so it generates identical data every single
 time. That is the only reason the eval suite can assert exact integers.
 
-**Say:** *"Same seed, same data, same numbers, every run. If your test data isn't
-reproducible you don't have tests, you have vibes."*
+**Key takeaway:** *The same seed produces the same data and numbers on every
+run. Reproducible test data is a prerequisite for reliable tests.*
 
 ### `scout/solar.py` — real dawn and dusk
 
 NOAA sunrise/sunset math for Milwaukee. It exists so the fake data peaks at
 *real* twilight for each date.
 
-You will not show this file. You just need one sentence if asked.
+This file is optional on a first pass. Its role can be summarized in one
+sentence:
 
-**Say:** *"The synthetic data peaks at real civil twilight for Milwaukee on each
-specific date, which is why the break looks like a genuine finding instead of
-noise."*
+**Key takeaway:** *The synthetic data peaks at real civil twilight for Milwaukee
+on each date, which is why the break resembles a genuine finding instead of
+noise.*
 
 ### `scout/agent.py` — question in, answer out
 
 Classify, extract, call a tool, phrase the answer. That is the file.
 
-Be honest about the planner. It is a **keyword router**, not a language model.
-The docstring at the top says so and so should you:
+An important limitation is explicit: the default planner is a **keyword
+router**, not a language model. Interpret the default results accordingly:
 
-> *"The planner is stubbed so this runs without wifi. The warehouse, the tools,
-> the traces and the evals are all real. And the failure I'm about to show you
-> is a **data** failure — swapping in a frontier model does not fix it. That's
-> the point."*
-
-Nobody will hold it against you. It makes the argument stronger.
+> *The planner is stubbed so this runs without network access. The warehouse,
+> tools, traces, and evals are real. The demonstrated failure is a **data**
+> failure, so swapping in a frontier model does not fix it.*
 
 ### `scout/tools.py` — the five things Scout can do
 
@@ -211,28 +209,28 @@ Nobody will hold it against you. It makes the argument stronger.
 | `check_wind_compatibility` | a rule engine — no model in the path |
 | `notify_crew` | texts humans — never runs unattended |
 
-Two of these are worth stopping on.
+Two of these are worth inspecting in detail.
 
 **`check_wind_compatibility` (line 243)** is pure arithmetic: compare the wind
 you have to the wind the stand needs, and if it is more than 90 degrees off, the
 answer is NO. No probability, no model, no judgment.
 
-**Say:** *"Some decisions don't get a probability. If this is wrong you walk your
-scent into the bedding area and burn the stand for a week — so it's an if
-statement, and the eval suite pins it exactly."*
+**Key takeaway:** *Some decisions should not receive a probability. A bad wind
+decision can spoil the stand for a week, so this rule is deterministic and the
+eval suite pins it exactly.*
 
 **`notify_crew` (line 303)** never sends anything. Look at the last line: it
 queues the request and then **raises** — it deliberately fails.
 
-**Say:** *"The write tool cannot succeed. That's not a limitation, that's the
-design."*
+**Key takeaway:** *The write tool cannot succeed without approval. That is the
+design, not a limitation.*
 
 ### `scout/tracing.py` — the receipt
 
 Spans go to `traces.jsonl` — one JSON object per line.
 
-**Say:** *"A trace is just another fact table. Land it in your lakehouse and
-query agent behavior with the SQL you already own."*
+**Key takeaway:** *A trace is another fact table. It can be landed in a
+lakehouse and queried with the same SQL used for other operational data.*
 
 One detail is worth pointing at, in `span()` around line 124:
 
@@ -250,12 +248,11 @@ numbers.
 Approval gates and kill switches. Three kill levels: one **tool**, one **agent**,
 the whole **fleet**.
 
-The state is just files in a `.control/` folder. That is deliberate — you can
-trip a kill switch from a second terminal, mid-demo, without restarting
-anything.
+The state is just files in a `.control/` folder. That is deliberate: a kill
+switch can be tripped from a second terminal without restarting the agent.
 
-**Say:** *"This is an if statement and a flag file. It is not hard. It's just
-that nobody asks for it in the demo."*
+**Key takeaway:** *This control is an `if` statement and a flag file. The hard
+part is treating operational controls as requirements from the start.*
 
 ### `scout/apply_firmware_rollout.py` — the break
 
@@ -263,48 +260,49 @@ Eight of twelve cameras get "improved timestamp reliability: capture times now
 recorded in UTC." Their timestamps shift five or six hours. Four cameras were
 out of cell range and stayed on the old firmware.
 
-Two details carry the whole talk:
+Two details carry the scenario:
 
 **It is partial (line 50).** A clean cutover moves the entire distribution and
 any human looking at a chart catches it. A partial rollout leaves the real dawn
 peak in place at reduced height and grows a *second* peak five hours later.
 
-**Say:** *"That doesn't look like a bug. That looks like a finding. It looks like
-the deer changed their pattern. Plausible failures survive — that's why you need
-evals."*
+**Key takeaway:** *The result resembles a finding rather than a bug: it looks
+like the deer changed their pattern. Plausible failures are why evals are
+needed.*
 
 **It is one UPDATE with a CASE, not two UPDATEs.** The comment at line 76
 explains: two sequential updates would double-shift any row that crossed the
-November daylight-saving boundary. That is a real bug that was hit while
-building this. Good throwaway aside if you have ten spare seconds.
+November daylight-saving boundary. That is a real implementation bug encountered
+while building this example and a useful reminder to reason about sequential
+data mutations.
 
 ### `evals/golden_cases.yaml` — 20 fixed questions
 
 Eight factual, five temporal, three rule, two refusal, two write-gate.
 
-**The thing to point at is what is *not* in the file:** there is not one
+**The important detail is what is *not* in the file:** there is not one
 assertion about how the answer is *worded*. Every assertion is a number or a
 verdict.
 
-**Say:** *"The day you assert on prose is the day your suite fails on a prompt
-edit, and the week after that is the week somebody turns it off."*
+**Key takeaway:** *Asserting on prose makes a suite fail on harmless prompt
+edits and encourages teams to disable it. Assert on numbers and verdicts.*
 
 **The year split is the clever bit.** Factual cases ask about 2023 and 2024.
 Temporal cases ask about 2025. The firmware rolled out in September 2025. So
 when it breaks, factual stays green and temporal goes red — and the *shape* of
 the failure points straight at the cause.
 
-**Say:** *"That's not an alarm. That's a diagnostic. It just turned a two-day
-investigation into a twenty-minute one."*
+**Key takeaway:** *The category pattern is a diagnostic, not merely an alarm;
+it can turn a two-day investigation into a twenty-minute one.*
 
 ### `evals/run_evals.py` — runs them, prints the signature
 
-The bar chart at the bottom is the slide. `check()` (line 36) is just a list of
-comparisons — no cleverness anywhere in it.
+The bar chart at the bottom provides the most useful summary. `check()` (line
+36) is just a list of comparisons; there is no hidden complexity.
 
 It exits non-zero when anything fails, which is what makes it usable as a CI
-gate. (`demo.ps1` swallows that so a red suite doesn't stop your script — a red
-suite is the demo *working*.)
+gate. (`demo.ps1` handles that exit code so an intentionally red suite does not
+stop the demonstration sequence.)
 
 ### `evals/run_data_evals.py` — checks the data, not the agent
 
@@ -315,14 +313,14 @@ should land within 100 minutes of civil dawn or dusk. Three seasons sit at 92%.
 Then it breaks the number down per camera and every failing camera is on
 firmware 2.2.
 
-**Say:** *"Nothing here violates a schema, so a data contract never fires. Every
-row is a perfectly valid timestamp. You need assertions about the **shape** of
-each partition against a known-good baseline. Most agent failures are data
-failures wearing a costume."*
+**Key takeaway:** *Nothing here violates a schema, so a structural data contract
+never fires. Detecting this problem requires assertions about the **shape** of
+each partition against a known-good baseline.*
 
 ### `scout/agent_maf.py` — the same agent on Microsoft Agent Framework
 
-Optional, and the answer to the only real objection to this demo.
+This optional path answers the natural question of whether a real model changes
+the result.
 
 Everything is shared with the stub — same warehouse, same `tools.py`, same
 `controls.py`, same tracer, same twenty golden cases. **Only the planner
@@ -335,11 +333,11 @@ changes.** And the failure is identical:
 
 Same wrong hours. Same volume collapses. Not one assertion edited.
 
-**Say:** *"That's not the stub. That's Microsoft Agent Framework with a real
-model doing real tool calling, against the same twenty assertions. It fails
-exactly the same way — because it was never a planning failure."*
+**Key takeaway:** *Microsoft Agent Framework uses a real model and real tool
+calling against the same twenty assertions. It fails in the same way because
+the defect was never a planning failure.*
 
-Three things worth pointing at if you open the file:
+Three things are worth noticing when reviewing the file:
 
 **The tool adapters exist because of one sharp edge.** The framework builds each
 tool's JSON schema by reading its Python signature. Our real tools take `tracer`
@@ -348,8 +346,8 @@ field to the model and invite it to hallucinate values into it. The adapters
 expose only the arguments the model should choose, and pick the tracer up from a
 context variable.
 
-**Say:** *"The model can only see the arguments you put in the signature. That's
-a schema, and it's yours to control."*
+**Key takeaway:** *The model can see only the arguments exposed in the
+signature. That signature is a schema controlled by the application.*
 
 **The write gate became one decorator argument:**
 
@@ -361,16 +359,15 @@ def notify_crew(message: ...) -> str:
 The framework will not execute it. The run returns early with a pending request
 instead — the same thing `controls.py` does by hand for the stub.
 
-**Say:** *"I hand-rolled this pattern before I knew the framework had it. That's
-the tell that it's the right pattern — it's the one everybody arrives at."*
+**Key takeaway:** *The hand-rolled and framework-native implementations converge
+on the same approval pattern, which makes the control portable and explicit.*
 
 **Refusal is a tool call, not a hoped-for sentence.** `defer_regulatory_question`
 is a real tool. The model calls it, so the refusal lands in the trace as a span
 and the eval suite can assert on it.
 
-**Say:** *"If your only evidence that the agent refused is that it happened to
-say the right words, you can't assert on it and you can't audit it. Make the
-refusal a tool call."*
+**Key takeaway:** *A refusal expressed only as prose is difficult to assert on
+or audit. Representing it as a tool call creates structured evidence.*
 
 Offline checks that need no model and no credentials:
 
@@ -380,8 +377,9 @@ Offline checks that need no model and no credentials:
 
 ### `evals/derive_baseline.py` — maintenance only
 
-You will never run this on stage. If you ever change the random seed in
-`build_db.py`, this tells you which expected numbers went stale.
+This command is for maintenance rather than the normal sequence. After changing
+the random seed in `build_db.py`, it identifies which expected numbers went
+stale.
 
 It refuses to run against a drifted warehouse — deriving a baseline from broken
 data would pin the bug as the expected answer and turn the suite permanently
@@ -389,9 +387,9 @@ green on garbage.
 
 ---
 
-## 6. Python you will see on screen
+## 6. Python used in the example
 
-Enough to not be caught out, in plain terms.
+The following table explains the recurring syntax in plain terms.
 
 | What you see | What it means |
 |---|---|
@@ -406,19 +404,20 @@ Enough to not be caught out, in plain terms.
 | `python -m scout.agent` | "run the `agent` file inside the `scout` folder as a program" |
 | `_leading_underscore` | by convention, internal — not meant to be called from outside |
 
-The one worth knowing properly is `with`, because it is on every screen:
+The `with` statement is especially important because it appears throughout the
+tracing implementation:
 
 ```python
 with tracer.span("peak_activity_hour", kind="tool") as span:
     ...do the work...
 ```
 
-**Say:** *"That's a timer that can't be forgotten. It starts when the block
-opens and stops when it closes — even if the code inside blows up."*
+**Key takeaway:** *This is a timer that cannot be forgotten. It starts when the
+block opens and stops when it closes, even if the enclosed code fails.*
 
 ---
 
-## 7. Questions you will probably get
+## 7. Common questions
 
 **"Is that a real LLM?"**
 No, and deliberately. The planner is a keyword router so this runs without wifi.
@@ -453,14 +452,15 @@ that mattered.
 
 ---
 
-## 8. If something goes wrong on stage
+## 8. Troubleshooting a local run
 
 | Symptom | Do this |
 |---|---|
-| Any command errors | `.\demo.ps1 reset` and move to the next beat. Do not debug in front of the room. |
-| Numbers look wrong | You are probably on a drifted warehouse. `.\demo.ps1 reset` |
+| Any command errors | Run `.\demo.ps1 reset`, then retry the failing beat. |
+| Numbers look wrong | The warehouse may be in the drifted state. Run `.\demo.ps1 reset`. |
 | Agent says "Scout is offline" | A kill switch is still set. `.\demo.ps1 release` |
 | Nothing runs at all | `.\setup.ps1` — rebuilds the environment from scratch |
-| Fell badly behind | Beats 1, 3, 4, 5, 9. That is the whole argument in five minutes. |
+| Need a shorter replay | Run beats 1, 3, 4, 5, and 9 for the core failure sequence. |
 
-**Never cut beats 1, 3, 4, 5.** Green → change → wrong → red. That is the talk.
+The core sequence is beats 1, 3, 4, and 5: green baseline → upstream change →
+wrong answer → red eval suite.

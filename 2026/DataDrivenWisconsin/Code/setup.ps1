@@ -13,7 +13,7 @@
   and the `py` launcher still points at a half-removed install. So rather than
   trust either name, this script PROVES an interpreter works before using it:
   it must import the standard library, and it must have venv and pip. That
-  check is the difference between finding out now and finding out on stage.
+  check catches environment problems before the demo sequence is run.
 #>
 
 [CmdletBinding()]
@@ -147,7 +147,7 @@ if ($Maf) {
     Write-Host "    .\demo.ps1 4 -Maf        same beat, real model" -ForegroundColor Green
     Write-Host "    .\demo.ps1 5 -Maf        same twenty cases, real model" -ForegroundColor Green
 } else {
-    Write-Host "Rehearse with:  .\demo.ps1 all" -ForegroundColor Green
-    Write-Host "Before you present:  .\demo.ps1 reset" -ForegroundColor Green
+    Write-Host "Run the full sequence:  .\demo.ps1 all" -ForegroundColor Green
+    Write-Host "Restore the baseline:   .\demo.ps1 reset" -ForegroundColor Green
 }
 Write-Host ""

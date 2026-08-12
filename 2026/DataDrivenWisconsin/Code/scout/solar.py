@@ -5,7 +5,7 @@ Dependency-free NOAA solar position approximation. This exists so the synthetic
 detection data peaks at *real* dawn and dusk for each calendar date, which is
 what makes the firmware break look like a genuine finding instead of noise.
 
-If the numbers here are off by two minutes, nobody in the room will care.
+Minute-level differences do not affect the scenario or its conclusions.
 What matters is that dawn drifts ~90 minutes across a Wisconsin season, so a
 naive "deer move at 6am" assumption cannot substitute for the real curve.
 """

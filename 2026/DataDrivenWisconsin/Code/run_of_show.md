@@ -1,12 +1,13 @@
-# Demo run of show — 9 minutes
+# Replaying the demo — 9-minute sequence
 
-**Slot:** Session 3, Track 2, Direct Supply ITC Great Hall. Demo starts ~minute 20
-of a 39-minute talk. Hard stop at minute 29 regardless of where you are.
+This guide reproduces the sequence used in the Data-Driven Wisconsin session.
+Each beat pairs a command with the behavior and design point to inspect.
 
-**Before you walk on:** `.\demo.ps1 reset`. Terminal at 20pt minimum. Notifications
-off. Second terminal open on the same directory for the kill switch beat.
+Start from the green baseline with `.\demo.ps1 reset`. A second terminal in the
+same directory is useful for experimenting with the kill switch in beat 9.
 
-**First time on a machine:** `.\setup.ps1` once, then `.\demo.ps1 all` to rehearse.
+**First run on a machine:** Run `.\setup.ps1` once. `.\demo.ps1 all` then replays
+the full sequence with a pause between beats.
 Plain-language tour of the code is in [WALKTHROUGH.md](WALKTHROUGH.md).
 
 ---
@@ -17,10 +18,9 @@ Plain-language tour of the code is in [WALKTHROUGH.md](WALKTHROUGH.md).
 .\demo.ps1 1
 ```
 
-> "This is Scout. Twelve trail cameras, four seasons, a weather feed. One job:
-> tell me where and when to sit. Right now it says be in the Bean Field stand at
-> six in the morning. Anybody who hunts knows that's the right answer — that's
-> civil dawn in October."
+Scout analyzes twelve trail cameras, four seasons, and a weather feed to
+recommend where and when to sit. Against the green baseline it recommends the
+Bean Field stand at 06:00, which aligns with civil dawn in October.
 
 ## Beat 2 — Green suite (1:00)
 
@@ -28,12 +28,10 @@ Plain-language tour of the code is in [WALKTHROUGH.md](WALKTHROUGH.md).
 .\demo.ps1 2
 ```
 
-> "Twenty golden cases. Eight factual, five temporal, three rules, two refusals,
-> two write gates. All green, gate clear. Notice what I am **not** asserting
-> anywhere in this file — I am not asserting how the answer is worded. Every
-> assertion is a number or a verdict. The day you assert on prose is the day
-> your suite fails on a prompt edit, and the week after that is the week
-> somebody turns it off."
+The suite contains twenty golden cases: eight factual, five temporal, three
+rules, two refusals, and two write gates. All pass against the baseline. The
+cases assert numbers and verdicts rather than wording, which keeps harmless
+prompt edits from making the suite brittle.
 
 ## Beat 3 — The change (0:45)
 
@@ -41,12 +39,11 @@ Plain-language tour of the code is in [WALKTHROUGH.md](WALKTHROUGH.md).
 .\demo.ps1 3
 ```
 
-> "Vendor pushed firmware 2.2 before last season. Release notes say: capture
-> times now recorded in UTC. That's a *true* statement and it's a breaking
-> change to every consumer downstream. Eight of twelve cameras took the update.
-> Four were out of cell range. Nobody reconciled the fleet."
+Firmware 2.2 changes capture times to UTC. Although the release note is
+accurate, the change breaks downstream assumptions. Eight of twelve cameras
+receive the update; four remain on 2.1, leaving an unreconciled mixed fleet.
 
-**Land this:** *No schema change. Every row loads. Nothing errors.*
+**What to notice:** *No schema changes. Every row loads. Nothing errors.*
 
 ## Beat 4 — Ask again (1:00)
 
@@ -54,15 +51,13 @@ Plain-language tour of the code is in [WALKTHROUGH.md](WALKTHROUGH.md).
 .\demo.ps1 4
 ```
 
-> "Same question. Same agent. Same code. Be in the stand at **eleven in the
-> morning.**"
+The same question, agent, and code now produce an **11:00** recommendation.
 
-**Let the silence sit.** Then:
+**Why the answer matters:**
 
-> "Everybody in this room who hunts just flinched, because eleven AM is absurd.
-> Hold onto that feeling — because when your agent tells you which accounts are
-> warm this week, **nobody in your building has that instinct.** There's no
-> absurdity check on a plausible number."
+An experienced hunter recognizes 11:00 as implausible, but many business-agent
+recommendations have no nearby expert with the same instinct. A plausible
+number can therefore escape an informal absurdity check.
 
 ## Beat 5 — Red suite (1:30)
 
@@ -70,36 +65,35 @@ Plain-language tour of the code is in [WALKTHROUGH.md](WALKTHROUGH.md).
 .\demo.ps1 5
 ```
 
-Read the failure signature out loud:
+**How to interpret the failure signature:**
 
-> "Fifteen of twenty. And look at the *shape*. Factual: eight for eight. Rules:
-> three for three. Refusals and write gates: clean. Every single failure is a
-> temporal aggregation. That's not an alarm, that's a **diagnostic** — it just
-> turned a two-day investigation into a twenty-minute one."
+Fifteen of twenty cases pass. Factual and rule cases remain green, as do the
+refusal and write-gate cases. Every failure is a temporal aggregation, making
+the suite a **diagnostic** that sharply narrows the investigation.
 
-Point at T2 and T5:
+**What T2 and T5 add:**
 
-> "Two of these failed on volume only — the peak hour didn't move at all, but
-> sixty-five percent of the detections vanished out of one and half out of the
-> other. That's the November daylight saving change pushing drifted dawn past
-> noon. If I'd only asserted the headline number, those two would have slid
-> through. **Assert the shape, not just the answer.**"
+Two cases fail on volume only: the peak hour stays fixed while 65% of one
+case's detections and roughly half of the other's disappear. The November
+daylight-saving change pushes drifted dawn past noon. Checking both hour and
+count catches failures that a headline-only assertion would miss.
 
 ## Beat 6 — Trace archaeology (2:00)
 
-Already on screen from beat 4 — scroll up, or rerun `.\demo.ps1 6`.
+The trace is included in beat 4 output. Beat 6 prints it again for focused
+inspection.
 
-> "Here's the whole turn. Planner picked the right intent. Right tool. Right SQL —
-> I can read the query that hit the warehouse, it's a span attribute. Correct
-> filters, correct grouping. **The agent did nothing wrong.**"
+The trace shows the correct intent, tool, SQL, filters, and grouping. The exact
+query is preserved as a span attribute. **The agent did nothing wrong.**
 
-Point at the yellow line:
+**Field that explains the failure:**
 
-> "`camera_firmware = {'2.1': 1, '2.2': 2}`. The fleet is mixed and the agent had
-> no reason to care. And read the bottom line: **zero errors.**"
+`camera_firmware = {'2.1': 1, '2.2': 2}` shows that the queried fleet is mixed.
+The agent has no reason to treat that as an error, and the trace reports
+**zero errors**.
 
-> "This is what production AI failure actually looks like. Not an outage. A
-> confident answer with a clean trace."
+This is a representative production AI failure mode: not an outage, but a
+confident answer accompanied by a clean trace.
 
 ## Beat 7 — Data eval (1:00)
 
@@ -107,14 +101,14 @@ Point at the yellow line:
 .\demo.ps1 7
 ```
 
-> "One invariant: deer are crepuscular, so at least eighty percent of detections
-> should land within a hundred minutes of civil dawn or dusk. Three seasons at
-> ninety-two percent. 2025 at thirty-three. Eight cameras below threshold, and
-> every one of them is on firmware 2.2."
+The data eval encodes one invariant: because deer are crepuscular, at least 80%
+of detections should fall within 100 minutes of civil dawn or dusk. Three
+seasons measure 92%; 2025 measures 33%. All eight cameras below the threshold
+run firmware 2.2.
 
-> "Nothing here violates a schema, so a data contract never fires. You need
-> assertions about the **shape** of each partition against a known-good baseline.
-> Most agent failures are data failures wearing a costume."
+No schema is violated, so a structural data contract does not fire. This class
+of failure requires assertions about the **shape** of each partition against a
+known-good baseline.
 
 ## Beat 8 — Approval gate (1:15)
 
@@ -122,14 +116,14 @@ Point at the yellow line:
 .\demo.ps1 8
 ```
 
-> "Scout wants to text Justin and Kurt. It doesn't get to. Write tools queue and
-> raise — never execute on the agent's own authority."
+Scout proposes a message to Justin and Kurt, but the write tool queues the
+request and raises instead of executing on the agent's authority.
 
-Note the footer:
+**How to interpret the footer:**
 
-> "Zero errors, one held by policy. Those are different columns on purpose. The
-> day held writes show up in your error rate is the day somebody 'fixes' the gate
-> to clean up a dashboard."
+The footer reports zero errors and one policy hold as separate values. Treating
+a successful hold as an error would create pressure to weaken the gate merely
+to improve an error-rate dashboard.
 
 ## Beat 9 — Kill switch (0:45)
 
@@ -137,28 +131,32 @@ Note the footer:
 .\demo.ps1 9
 ```
 
-> "Eval gate went red, so Scout is done until a human clears it. Three levels —
-> one tool, one agent, whole fleet. This is an `if` statement and a flag file.
-> It is not hard. It's just that nobody asks for it in the demo."
+Once the eval gate turns red, Scout remains unavailable until a human clears
+it. The example includes tool-, agent-, and fleet-level switches implemented
+with an `if` statement and a flag file.
 
-**Close on the terminal, not a chat window.** Last frame should look like DevOps.
+The final state demonstrates that operational controls belong alongside the
+agent rather than only in its conversational interface.
 
 ---
 
-## Contingencies
+## Troubleshooting a replay
 
 | If | Then |
 |---|---|
-| Terminal font too small | `.\demo.ps1` beats are all under 72 columns — bump to 24pt, don't resize the window |
-| Any command errors | `.\demo.ps1 reset` and skip to the recording. Do not debug on stage. |
-| Running long at beat 5 | Skip beat 6 (trace) and go straight to beat 7 — the data eval carries the root cause anyway |
-| Running very long | Beats 1, 3, 4, 5, 9. That's the whole argument in five minutes. |
-| Projector dies | Narrate the recording. The story works as audio. |
+| Terminal output wraps | Widen the terminal or reduce its font size; each beat is designed for 72 columns. |
+| A command errors | Run `.\demo.ps1 reset`, then retry the failing beat. |
+| Numbers differ from the guide | Run `.\demo.ps1 reset` to rebuild the known green warehouse. |
+| Scout reports that it is offline | Run `.\demo.ps1 release` to clear a remaining kill switch. |
+| A shorter replay is needed | Beats 1, 3, 4, 5, and 9 preserve the core argument. |
 
-## Cut order under time pressure
+## Shorter replay options
 
-1. Beat 6 (trace) — beat 7 covers root cause
-2. Beat 2 (green suite) — you can assert 20/20 verbally
-3. Beat 8 (approval gate) — moves to a slide
+For a shorter path, omit these beats in order:
 
-**Never cut:** 1, 3, 4, 5. Green → change → wrong → red. That's the talk.
+1. Beat 6, because beat 7 also identifies the root cause.
+2. Beat 2, because beat 1 already establishes the green behavior.
+3. Beat 8, because the approval gate is independent of the timestamp failure.
+
+Beats 1, 3, 4, and 5 form the minimum causal sequence: green baseline →
+upstream change → wrong answer → red eval suite.

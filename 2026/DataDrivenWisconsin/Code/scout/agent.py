@@ -6,15 +6,14 @@ Scout: a scouting analyst agent.
 
 TWO PLANNERS
     stub   deterministic keyword router. No network, no API key, instant,
-           byte-identical every run. This is what you present with.
+           byte-identical every run. This is the default reproducible path.
     azure  real tool-calling loop against Azure OpenAI. Set AZURE_OPENAI_ENDPOINT,
            AZURE_OPENAI_API_KEY, AZURE_OPENAI_DEPLOYMENT.
 
-BE HONEST ON STAGE ABOUT THIS. Say: "the planner is stubbed so this runs on
-airplane wifi -- the tools, the warehouse, the traces and the evals are real."
-Nobody will hold it against you. The failure being demonstrated is a DATA
-failure, and swapping in a real model does not change it one bit. That is
-itself the point: a smarter model does not save you from bad timestamps.
+Interpret the default path accordingly: the planner is stubbed so the example
+runs offline, while the tools, warehouse, traces, and evals are real. The
+failure being demonstrated is a DATA failure, and swapping in a real model does
+not change it. A smarter model does not repair bad timestamps.
 
     python -m scout.agent "what time should I sit Bean Field in October 2025?"
 """
@@ -56,7 +55,7 @@ REGULATION_TERMS = [
 
 
 def _wrap_for_screen(text: str, prefix_width: int = 5) -> list[str]:
-    """Break one long string into projector-width lines. Never returns []."""
+    """Break one long string into readable terminal-width lines. Never returns []."""
     return textwrap.wrap(text, width=SCREEN_WIDTH - prefix_width) or [""]
 
 
@@ -74,7 +73,7 @@ class AgentResult:
 
     def print_answer(self) -> None:
         """
-        Print the Q and the A, wrapped to fit a projector.
+        Print the Q and the A, wrapped for readable terminal output.
 
         The answer line is the most important line in the whole demo -- it is
         the "be in the stand at eleven" moment. Unwrapped it runs to about 150
@@ -312,9 +311,9 @@ def _azure_available() -> bool:
 
 def _run_azure(question: str, tracer: Tracer) -> AgentResult:
     """
-    Real tool-calling loop. Left thin on purpose -- if you wire this up before
-    Wednesday, wire it up with the SAME tools module so the traces and the
-    evals do not change shape. Falls back to stub if the call fails.
+    Real tool-calling loop. Left thin on purpose. Alternate planners should use
+    the SAME tools module so the traces and evals remain comparable. Falls back
+    to the stub if the call fails.
     """
     try:
         from openai import AzureOpenAI  # noqa: F401
@@ -332,13 +331,13 @@ def ask(question: str, planner: str = "stub") -> AgentResult:
     if planner == "maf":
         # Imported lazily and never at module scope. The Microsoft Agent
         # Framework path has its own dependencies and its own virtual
-        # environment; the stub planner has to keep working with neither of
-        # them installed, because the stub is what you present with.
+        # environment; the default offline path must keep working without
+        # either of them installed.
         try:
             from scout import agent_maf
         except ImportError as exc:
-            # A bare ModuleNotFoundError traceback is the last thing you want
-            # on a projector. Say what to run instead.
+            # Replace a bare ModuleNotFoundError traceback with actionable setup
+            # guidance.
             raise SystemExit(
                 f"\n  The Microsoft Agent Framework planner is not installed here.\n"
                 f"  ({exc})\n\n"

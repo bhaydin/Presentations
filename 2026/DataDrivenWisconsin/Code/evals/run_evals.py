@@ -5,9 +5,9 @@ Run the golden suite. Exits non-zero on failure so it can be a CI gate.
     python -m evals.run_evals --verbose
     python -m evals.run_evals --category temporal
 
-Output is tuned for a projector. The category rollup at the bottom is the
-part that matters on stage: it turns "something is broken" into "the temporal
-aggregations are broken and nothing else is," which is a twenty minute
+Output is tuned for quick scanning. The category rollup at the bottom turns
+"something is broken" into "the temporal aggregations are broken and nothing
+else is," which is a twenty minute
 investigation instead of a two day one.
 """
 
