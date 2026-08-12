@@ -9,8 +9,8 @@ Three levels of kill switch, matching what you actually want in production:
     AGENT -- this agent stops, others keep running
     FLEET -- everything stops now
 
-State lives in flag files so you can trip a switch from a second terminal
-mid-demo without restarting anything.
+State lives in flag files so a switch can be tripped from another terminal
+without restarting the agent.
 """
 
 from __future__ import annotations
@@ -156,7 +156,7 @@ def resolve(approval_id: str, decision: str) -> None:
 
 
 def reset() -> None:
-    """Clean slate between rehearsals."""
+    """Restore a clean baseline between runs."""
     if STATE_DIR.exists():
         for p in STATE_DIR.iterdir():
             p.unlink()
@@ -173,8 +173,8 @@ if __name__ == "__main__":
         print("Pending approvals:", len(pending))
         for p in pending:
             # One line per approval, one for its message. Printing the raw
-            # payload dict ran to 130+ columns and wrapped into mush on the
-            # projector -- and this queue is the thing you point at on stage.
+            # payload dict runs to 130+ columns and obscures the evidence that
+            # is useful when reviewing a hold.
             print(f"  {p['approval_id']}  {p['tool']}  -> {p['payload']['recipients']}")
             message = p["payload"].get("message", "")
             for line in textwrap.wrap(message, width=64) or [""]:

@@ -3,5 +3,6 @@
 duckdb>=1.0
 PyYAML>=6.0
 
-# Optional: only if you wire up the real Azure OpenAI planner before Wednesday.
+# Optional Azure OpenAI support belongs in the separate MAF environment; see
+# requirements-maf.txt and the "second planner" section of README.md.
 # openai>=1.40

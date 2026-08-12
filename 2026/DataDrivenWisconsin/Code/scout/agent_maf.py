@@ -6,19 +6,19 @@ Scout, rebuilt on Microsoft Agent Framework.
 
 WHY THIS FILE EXISTS
     The stub planner in agent.py is a keyword router. It is honest, offline and
-    byte-identical every run, which is what you want on stage. What it is NOT is
-    a real agent, and the obvious objection to the whole demo is "sure, but you
-    used a stub."
+    byte-identical every run, which makes it useful for reproducible exploration.
+    What it is NOT is a real agent, which raises a fair question: does the same
+    result hold when a model chooses the tools?
 
-    This file removes that objection. Same warehouse, same tools, same traces,
-    same eval suite -- with a real model doing the planning and real tool
-    calling underneath. And the firmware failure still happens, identically,
-    because it was never a planning failure. That is the entire argument.
+    This file answers that question. It uses the same warehouse, tools, traces,
+    and eval suite, with a real model doing the planning and real tool calling
+    underneath. The firmware failure still happens identically because it was
+    never a planning failure.
 
 WHAT IS DELIBERATELY SHARED WITH THE STUB
     scout/tools.py       untouched. Same SQL, same spans, same rule engine.
     scout/controls.py    untouched. Same approval queue, same kill switches.
-    scout/tracing.py     untouched. Same projector output for beat 4 and 6.
+    scout/tracing.py     untouched. Same readable output for beats 4 and 6.
     AgentResult          reused, so evals/run_evals.py works against either
                          planner without a single change to its assertions.
 
@@ -380,7 +380,7 @@ async def _ask_async(question: str, tracer: Tracer) -> AgentResult:
         tools=TOOLBELT,
         # Temperature 0 buys you as much run-to-run stability as a language
         # model will give you. It is NOT the byte-identical determinism the
-        # stub planner has, which is exactly why the stub is what you present.
+        # stub planner has, which is why the stub remains the reproducible default.
         default_options=OpenAIChatOptions(temperature=0.0),
     )
     response = await agent.run(question)
@@ -398,7 +398,8 @@ def _to_result(question, response, calls, tracer) -> AgentResult:
     # The span matters as much as the queue entry. The framework stops the tool
     # before it runs, so nothing downstream emits anything -- without this the
     # trace for a blocked write reads "0 tool calls, 0 errors", which is true
-    # but tells the room nothing. The refusal has to be visible in the trace.
+    # but exposes no evidence to the caller. The refusal has to be visible in
+    # the trace.
     if requests:
         approval_id = None
         for req in requests:
@@ -458,7 +459,7 @@ def ask(question: str) -> AgentResult:
         it cleans up asynchronously -- so the loop closes first, the pool tries
         to clean up on a dead loop, and every single call prints an "Event loop
         is closed" traceback. Running the twenty golden cases produced 56KB of
-        those, which is unreadable on a projector and looks like a broken demo.
+        those, which obscures the result and looks like an application failure.
 
         So we keep ONE loop and ONE client for the life of the process, and
         shut them down properly at exit.

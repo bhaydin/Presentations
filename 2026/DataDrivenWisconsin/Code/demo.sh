@@ -4,7 +4,7 @@
 # Each beat is one command. Run them ONE AT A TIME from separate terminal
 # invocations, or use ./demo.sh <beat> to fire a single beat.
 #
-#   ./demo.sh reset     back to green. run this before every rehearsal.
+#   ./demo.sh reset     restore the green baseline.
 #   ./demo.sh 1         green baseline: agent answers correctly
 #   ./demo.sh 2         green evals: 20/20, gate clear
 #   ./demo.sh 3         THE CHANGE: firmware 2.2 rollout
@@ -14,9 +14,9 @@
 #   ./demo.sh 7         data eval names the root cause
 #   ./demo.sh 8         approval gate holds a write
 #   ./demo.sh 9         kill switch
-#   ./demo.sh all       every beat, pausing between each (rehearsal)
+#   ./demo.sh all       every beat, pausing between each
 #
-# Font check before you present: everything here fits in 72 columns.
+# Output is designed to fit within 72 terminal columns.
 
 set -euo pipefail
 cd "$(dirname "$0")"

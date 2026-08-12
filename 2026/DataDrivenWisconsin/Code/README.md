@@ -40,12 +40,12 @@ Runs fully offline. No API key, no network at runtime, no cloud. Deterministic �
 same seed, same data, same numbers every time.
 
 > New to this code? Read **[WALKTHROUGH.md](WALKTHROUGH.md)** — a plain-language
-> tour of every file, with the sentence to say out loud for each one.
+> tour of every file and the main idea each piece demonstrates.
 
 ## The demo
 
 ```powershell
-.\demo.ps1 reset     # back to green before every rehearsal
+.\demo.ps1 reset     # restore the green baseline
 .\demo.ps1 1         # Scout answers correctly: be in the stand at 06:00
 .\demo.ps1 2         # golden suite: 20/20, gate clear
 .\demo.ps1 3         # firmware 2.2 rollout   <-- THE CHANGE
@@ -56,12 +56,12 @@ same seed, same data, same numbers every time.
 .\demo.ps1 8         # approval gate holds a write
 .\demo.ps1 9         # kill switch
 
-.\demo.ps1 all       # full rehearsal, pauses between beats
+.\demo.ps1 all       # run the full sequence, pausing between beats
 ```
 
 On Mac/Linux use `./demo.sh` with the same arguments.
 
-Beat-by-beat narration is in **[run_of_show.md](run_of_show.md)**.
+A beat-by-beat replay guide is in **[run_of_show.md](run_of_show.md)**.
 
 ## Layout
 
@@ -80,9 +80,9 @@ builds, `evals/` is the thing everybody skips.
 | [scout/schema.sql](scout/schema.sql) | `detections.captured_at` has **no offset column**. That single omission is what makes silent drift possible. |
 | [scout/apply_firmware_rollout.py](scout/apply_firmware_rollout.py) | The rollout is **partial**. A clean cutover shifts the whole distribution and a human catches it. A partial rollout leaves the real dawn peak at reduced amplitude and grows a second peak five hours later — that looks like a *finding*. |
 | [scout/tools.py](scout/tools.py) | `check_wind_compatibility` is a deterministic rule engine with **no model in the path**. Some decisions don't get a probability. |
-| [scout/controls.py](scout/controls.py) | An approval gate is an `if` statement and a queue. Teams skip these because nobody asked for them in the demo. |
-| [scout/tracing.py](scout/tracing.py) | A trace is just another fact table. Land it in your lakehouse and query agent behavior with the SQL you already have. |
-| [evals/golden_cases.yaml](evals/golden_cases.yaml) | Not one assertion about how the answer is **worded**. Assert on numbers and verdicts. Prose assertions fail on every prompt edit and you will turn the suite off inside a week. |
+| [scout/controls.py](scout/controls.py) | An approval gate is an `if` statement and a queue. Operational controls work best when they are requirements from the start. |
+| [scout/tracing.py](scout/tracing.py) | A trace is another fact table that can be landed in a lakehouse and queried with familiar SQL. |
+| [evals/golden_cases.yaml](evals/golden_cases.yaml) | Not one assertion depends on how the answer is **worded**. Assertions target numbers and verdicts so harmless prompt edits do not make the suite brittle. |
 | [evals/run_evals.py](evals/run_evals.py) | The category rollup turns "something is broken" into "the temporal aggregations are broken and nothing else is." |
 | [evals/run_data_evals.py](evals/run_data_evals.py) | Most agent failures are data failures wearing a costume. This one fires *before* any agent eval and names the eight cameras. |
 
@@ -104,13 +104,13 @@ count. Assert the shape, not just the headline number.
 ## Honest disclosure about the planner
 
 The default planner is a **deterministic keyword router**, not a language model.
-Say so on stage:
+Keep that distinction in mind when interpreting the results:
 
-> "The planner is stubbed so this runs without wifi. The warehouse, the tools,
-> the traces, and the evals are real. And the failure I'm about to show you is a
-> *data* failure — swapping in a frontier model does not fix it. That's the point."
+> The planner is stubbed so this runs without network access. The warehouse,
+> tools, traces, and evals are real. The demonstrated failure is a *data*
+> failure, so swapping in a frontier model does not fix it.
 
-You no longer have to take that on faith. See below.
+The second planner below verifies that claim with a real model.
 
 ## The second planner: Microsoft Agent Framework
 
@@ -145,7 +145,7 @@ rather than asserted:
 > doing real tool calling. Same twenty assertions, not one of them edited. It
 > fails in exactly the same way, because it was never a planning failure."
 
-Two design notes worth saying out loud:
+Two design details are especially useful when reviewing the implementation:
 
 - `notify_crew` is gated with `@tool(approval_mode="always_require")`. The
   framework **refuses to execute it** and returns a pending request instead —
@@ -176,11 +176,11 @@ already pins the two that install as clean wheels.
 ```
 
 Rebuilds the green warehouse, clears approvals and kill switches, and deletes
-`traces.jsonl`. Run it before every rehearsal and once more before you walk on.
+`traces.jsonl`. Run it whenever a clean, reproducible baseline is needed.
 
 ## Maintenance
 
-If you ever change `SEED` or the volume constants in `scout/build_db.py`, the
+If `SEED` or the volume constants in `scout/build_db.py` change, the
 expected integers in `evals/golden_cases.yaml` go stale. To find out which:
 
 ```powershell

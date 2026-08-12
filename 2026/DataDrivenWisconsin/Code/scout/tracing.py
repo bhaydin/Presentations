@@ -3,8 +3,8 @@ Minimal OTel-shaped tracing. Spans go to a JSONL file, which is deliberate:
 a trace is just another fact table. If you can land it in your lakehouse you
 can query agent behavior with the same SQL you use for everything else.
 
-The printer is tuned for a projector at the back of a wide room. Big glyphs,
-high contrast, no more than ~72 columns.
+The printer is tuned for readable terminal output: distinct glyphs, high
+contrast, and no more than ~72 columns.
 """
 
 from __future__ import annotations
@@ -32,9 +32,9 @@ SCREEN_WIDTH = 72
 WRAP_WIDTH = 70
 
 # Longest attribute value we will print before giving up and ellipsizing.
-# The SQL attribute is the reason this is generous: on stage you point at the
-# trace and say "I can read the exact query that hit the warehouse." That claim
-# has to be true, so the query gets wrapped across lines rather than truncated.
+# The SQL attribute is the reason this is generous: a reader should be able to
+# inspect the exact query that hit the warehouse, so it is wrapped across lines
+# rather than truncated.
 MAX_ATTR_LINES = 8
 
 _C = {
@@ -156,13 +156,13 @@ class Tracer:
                 )
 
     # ------------------------------------------------------------------
-    # Projector output
+    # Readable terminal output
     # ------------------------------------------------------------------
 
     def print_tree(self, highlight: str | None = None) -> None:
         """
-        highlight: substring of an attribute value to flag in yellow. Use it to
-        point at the ONE field that explains the failure.
+        highlight: substring of an attribute value to flag in yellow so the
+        field that explains the failure is easy to identify.
         """
         print()
         print(c("  TRACE " + self.trace_id, "bold", "cyan"), c(self.trace_name, "dim"))
@@ -211,7 +211,7 @@ class Tracer:
         if held:
             footer += f"   {held} held by policy"
 
-        # When errors == 0 this line is the whole argument. Make it readable,
-        # not dim -- you want the room to see "0 errors" under a wrong answer.
+        # When errors == 0 this line is the whole argument. Keep it readable,
+        # not dim, so "0 errors" remains conspicuous under a wrong answer.
         print(c(footer, "bold") if errors == 0 and not held else c(footer, "dim"))
         print()

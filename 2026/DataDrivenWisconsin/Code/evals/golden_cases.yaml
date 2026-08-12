@@ -1,14 +1,13 @@
 # Scout golden cases -- the fixed camera positions.
 #
-# Same question, same angle, same expected answer, every run. Twenty cases is
-# not a lot. Twenty cases is enough to catch the thing that took you a season
-# to notice last time.
+# Same question, same angle, same expected answer, every run. Twenty cases is a
+# small suite, but it is enough to catch the simulated seasonal drift.
 #
 # ASSERT ON NUMBERS AND VERDICTS, NEVER ON PROSE.
 # There is not a single assertion in this file about how the answer is worded.
-# Wording drifts every time you touch a prompt. If your eval suite fails when
-# the agent says "roughly 40" instead of "40", you will turn it off inside a
-# week and you will deserve what happens next.
+# Wording drifts when a prompt changes. If a suite fails when the agent says
+# "roughly 40" instead of "40", harmless edits create noise and the suite is
+# unlikely to remain useful.
 #
 # Expected values were DERIVED from the green warehouse, not invented.
 # Regenerate with: python -m evals.derive_baseline

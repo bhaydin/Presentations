@@ -1,9 +1,9 @@
 """
 Apply trail camera firmware 2.2 to part of the fleet.
 
-Run this ON STAGE. It mutates the existing warehouse in place, which is the
-whole point -- it must read as "something happened upstream," not as
-"the presenter regenerated his demo data."
+Run this after establishing the green baseline. It mutates the existing
+warehouse in place to model an upstream change rather than regenerating the
+dataset in its broken state.
 
     python -m scout.apply_firmware_rollout
 
@@ -75,7 +75,7 @@ def main() -> None:
     #
     # This MUST be a single statement with a CASE. Two sequential UPDATEs would
     # double-shift rows that cross the DST boundary when the first one moves
-    # them -- a real bug I hit building this, and a decent aside if you want one.
+    # them -- a real implementation bug encountered while building this example.
     con.execute(
         """
         UPDATE detections
@@ -110,8 +110,8 @@ def main() -> None:
     con.close()
 
     print("Firmware 2.2 rollout applied.")
-    # Split across two lines: the full sentence runs to 87 columns and this
-    # is the line you read aloud on stage.
+    # Split across two lines so the full release note remains easy to scan in
+    # terminal output.
     print('  release notes:   "Improved timestamp reliability.')
     print('                    Capture times now recorded in UTC."')
     print(f"  updated cameras: {DRIFTED_CAMERAS}")

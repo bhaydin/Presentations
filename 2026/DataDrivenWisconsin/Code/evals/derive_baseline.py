@@ -3,22 +3,21 @@ Re-derive the expected numbers in golden_cases.yaml from the GREEN warehouse.
 
     python -m evals.derive_baseline
 
-You need this exactly once per lifetime of the demo: when you change the seed,
-the season list, or the volume constants in build_db.py, every expected integer
-in golden_cases.yaml goes stale. Rather than hand-editing twenty cases, run
-this and paste the numbers it prints.
+This maintenance command is needed when the seed, season list, or volume
+constants in build_db.py change and the expected integers in golden_cases.yaml
+go stale. It prints updated values instead of requiring twenty cases to be
+recalculated by hand.
 
 WHY IT ONLY PRINTS, AND NEVER REWRITES THE FILE
-golden_cases.yaml is more comment than code. The comments are the teaching --
+golden_cases.yaml is more comment than code. The comments explain
 why the years are split, why volume is asserted alongside the peak hour. A
-YAML round-trip would silently eat all of it. So this prints a patch for you
-to apply by eye.
+YAML round-trip would silently remove that context, so this prints values for
+manual review and application.
 
 SAFETY RAIL
 Deriving a baseline from a DRIFTED warehouse would bake the bug into the
-suite as the expected answer -- the single worst thing you can do to an eval
-suite, and an easy mistake to make at 11pm the night before. So this refuses
-to run unless all twelve cameras are on firmware 2.1.
+suite as the expected answer and invalidate the eval. This command therefore
+refuses to run unless all twelve cameras are on firmware 2.1.
 """
 
 from __future__ import annotations
@@ -60,7 +59,7 @@ def assert_green() -> None:
         print(
             c(
                 "  This warehouse has already drifted. Deriving now would pin\n"
-                "  the BUG as the expected answer and your suite would go\n"
+                "  the BUG as the expected answer and leave the suite\n"
                 "  permanently green on broken data.",
                 "red",
             )
