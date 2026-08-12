@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(py -c \"import sys; print\\(sys.executable\\)\")",
+      "PowerShell(py -m pip --version)",
+      "PowerShell(\"--- C:\\\\Python313 ---\"; if \\(Test-Path C:\\\\Python313\\) { Get-ChildItem C:\\\\Python313 | Select-Object -First 25 Name } else { \"missing\" }; \"--- Lib? ---\"; Test-Path C:\\\\Python313\\\\Lib; \"--- PYTHONHOME/PYTHONPATH ---\"; \"PYTHONHOME=$env:PYTHONHOME\"; \"PYTHONPATH=$env:PYTHONPATH\"; \"--- other pythons ---\"; py -0p)",
+      "PowerShell(Get-ChildItem \"$env:LOCALAPPDATA\\\\Programs\\\\Python\\\\Python313\" -ErrorAction SilentlyContinue | Select-Object Name, Length)",
+      "PowerShell(winget install --id Python.Python.3.13 --exact --silent --accept-package-agreements --accept-source-agreements --disable-interactivity 2>&1)"
+    ]
+  }
+}
