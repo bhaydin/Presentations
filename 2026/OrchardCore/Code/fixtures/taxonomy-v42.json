@@ -1,0 +1,1878 @@
+{
+  "version": 42,
+  "name": "consolidated-2026",
+  "terms": [
+    {
+      "id": "community-events",
+      "parent": null,
+      "label": "Community events",
+      "guidance": "Gatherings, markets and civic occasions. Preparedness and readiness content belongs under public-safety, even when delivered as a public event."
+    },
+    {
+      "id": "festivals",
+      "parent": "community-events",
+      "label": "Festivals",
+      "guidance": "Content about festivals."
+    },
+    {
+      "id": "farmers-markets",
+      "parent": "community-events",
+      "label": "Farmers markets",
+      "guidance": "Content about farmers markets."
+    },
+    {
+      "id": "street-fairs",
+      "parent": "community-events",
+      "label": "Street fairs",
+      "guidance": "Content about street fairs."
+    },
+    {
+      "id": "public-workshops",
+      "parent": "community-events",
+      "label": "Public workshops",
+      "guidance": "Content about public workshops."
+    },
+    {
+      "id": "volunteer-days",
+      "parent": "community-events",
+      "label": "Volunteer days",
+      "guidance": "Content about volunteer days."
+    },
+    {
+      "id": "seasonal-celebrations",
+      "parent": "community-events",
+      "label": "Seasonal celebrations",
+      "guidance": "Content about seasonal celebrations."
+    },
+    {
+      "id": "neighbourhood-meetings",
+      "parent": "community-events",
+      "label": "Neighbourhood meetings",
+      "guidance": "Content about neighbourhood meetings."
+    },
+    {
+      "id": "sports-tournaments",
+      "parent": "community-events",
+      "label": "Sports tournaments",
+      "guidance": "Content about sports tournaments."
+    },
+    {
+      "id": "community-fundraisers",
+      "parent": "community-events",
+      "label": "Community fundraisers",
+      "guidance": "Content about community fundraisers."
+    },
+    {
+      "id": "holiday-programmes",
+      "parent": "community-events",
+      "label": "Holiday programmes",
+      "guidance": "Content about holiday programmes."
+    },
+    {
+      "id": "open-house-days",
+      "parent": "community-events",
+      "label": "Open house days",
+      "guidance": "Content about open house days."
+    },
+    {
+      "id": "civic-ceremonies",
+      "parent": "community-events",
+      "label": "Civic ceremonies",
+      "guidance": "Content about civic ceremonies."
+    },
+    {
+      "id": "public-safety",
+      "parent": null,
+      "label": "Public safety",
+      "guidance": "Policing, hazards and alerts. All emergency preparedness content belongs here, including readiness workshops, drop-ins and household planning guides."
+    },
+    {
+      "id": "emergency-services",
+      "parent": "public-safety",
+      "label": "Emergency services",
+      "guidance": "Content about emergency services."
+    },
+    {
+      "id": "fire-prevention",
+      "parent": "public-safety",
+      "label": "Fire prevention",
+      "guidance": "Content about fire prevention."
+    },
+    {
+      "id": "flood-warnings",
+      "parent": "public-safety",
+      "label": "Flood warnings",
+      "guidance": "Content about flood warnings."
+    },
+    {
+      "id": "storm-readiness",
+      "parent": "public-safety",
+      "label": "Storm readiness",
+      "guidance": "Content about storm readiness."
+    },
+    {
+      "id": "police-liaison",
+      "parent": "public-safety",
+      "label": "Police liaison",
+      "guidance": "Content about police liaison."
+    },
+    {
+      "id": "neighbourhood-watch",
+      "parent": "public-safety",
+      "label": "Neighbourhood watch",
+      "guidance": "Content about neighbourhood watch."
+    },
+    {
+      "id": "road-safety",
+      "parent": "public-safety",
+      "label": "Road safety",
+      "guidance": "Content about road safety."
+    },
+    {
+      "id": "water-safety",
+      "parent": "public-safety",
+      "label": "Water safety",
+      "guidance": "Content about water safety."
+    },
+    {
+      "id": "hazard-reporting",
+      "parent": "public-safety",
+      "label": "Hazard reporting",
+      "guidance": "Content about hazard reporting."
+    },
+    {
+      "id": "evacuation-routes",
+      "parent": "public-safety",
+      "label": "Evacuation routes",
+      "guidance": "Content about evacuation routes."
+    },
+    {
+      "id": "public-alerts",
+      "parent": "public-safety",
+      "label": "Public alerts",
+      "guidance": "Content about public alerts."
+    },
+    {
+      "id": "first-aid-training",
+      "parent": "public-safety",
+      "label": "First aid training",
+      "guidance": "Content about first aid training."
+    },
+    {
+      "id": "waste-services",
+      "parent": null,
+      "label": "Waste services",
+      "guidance": "Content about waste services."
+    },
+    {
+      "id": "kerbside-collection",
+      "parent": "waste-services",
+      "label": "Kerbside collection",
+      "guidance": "Content about kerbside collection."
+    },
+    {
+      "id": "recycling-centres",
+      "parent": "waste-services",
+      "label": "Recycling centres",
+      "guidance": "Content about recycling centres."
+    },
+    {
+      "id": "green-waste",
+      "parent": "waste-services",
+      "label": "Green waste",
+      "guidance": "Content about green waste."
+    },
+    {
+      "id": "bulky-item-pickup",
+      "parent": "waste-services",
+      "label": "Bulky item pickup",
+      "guidance": "Content about bulky item pickup."
+    },
+    {
+      "id": "hazardous-waste",
+      "parent": "waste-services",
+      "label": "Hazardous waste",
+      "guidance": "Content about hazardous waste."
+    },
+    {
+      "id": "composting",
+      "parent": "waste-services",
+      "label": "Composting",
+      "guidance": "Content about composting."
+    },
+    {
+      "id": "bin-requests",
+      "parent": "waste-services",
+      "label": "Bin requests",
+      "guidance": "Content about bin requests."
+    },
+    {
+      "id": "collection-calendars",
+      "parent": "waste-services",
+      "label": "Collection calendars",
+      "guidance": "Content about collection calendars."
+    },
+    {
+      "id": "litter-reporting",
+      "parent": "waste-services",
+      "label": "Litter reporting",
+      "guidance": "Content about litter reporting."
+    },
+    {
+      "id": "illegal-dumping",
+      "parent": "waste-services",
+      "label": "Illegal dumping",
+      "guidance": "Content about illegal dumping."
+    },
+    {
+      "id": "textile-recycling",
+      "parent": "waste-services",
+      "label": "Textile recycling",
+      "guidance": "Content about textile recycling."
+    },
+    {
+      "id": "electronics-disposal",
+      "parent": "waste-services",
+      "label": "Electronics disposal",
+      "guidance": "Content about electronics disposal."
+    },
+    {
+      "id": "council-notices",
+      "parent": null,
+      "label": "Council notices",
+      "guidance": "Content about council notices."
+    },
+    {
+      "id": "meeting-agendas",
+      "parent": "council-notices",
+      "label": "Meeting agendas",
+      "guidance": "Content about meeting agendas."
+    },
+    {
+      "id": "meeting-minutes",
+      "parent": "council-notices",
+      "label": "Meeting minutes",
+      "guidance": "Content about meeting minutes."
+    },
+    {
+      "id": "public-consultations",
+      "parent": "council-notices",
+      "label": "Public consultations",
+      "guidance": "Content about public consultations."
+    },
+    {
+      "id": "statutory-notices",
+      "parent": "council-notices",
+      "label": "Statutory notices",
+      "guidance": "Content about statutory notices."
+    },
+    {
+      "id": "tender-notices",
+      "parent": "council-notices",
+      "label": "Tender notices",
+      "guidance": "Content about tender notices."
+    },
+    {
+      "id": "bylaw-changes",
+      "parent": "council-notices",
+      "label": "Bylaw changes",
+      "guidance": "Content about bylaw changes."
+    },
+    {
+      "id": "appointment-notices",
+      "parent": "council-notices",
+      "label": "Appointment notices",
+      "guidance": "Content about appointment notices."
+    },
+    {
+      "id": "budget-notices",
+      "parent": "council-notices",
+      "label": "Budget notices",
+      "guidance": "Content about budget notices."
+    },
+    {
+      "id": "closure-notices",
+      "parent": "council-notices",
+      "label": "Closure notices",
+      "guidance": "Content about closure notices."
+    },
+    {
+      "id": "hearing-notices",
+      "parent": "council-notices",
+      "label": "Hearing notices",
+      "guidance": "Content about hearing notices."
+    },
+    {
+      "id": "policy-drafts",
+      "parent": "council-notices",
+      "label": "Policy drafts",
+      "guidance": "Content about policy drafts."
+    },
+    {
+      "id": "annual-reports",
+      "parent": "council-notices",
+      "label": "Annual reports",
+      "guidance": "Content about annual reports."
+    },
+    {
+      "id": "planning-and-development",
+      "parent": null,
+      "label": "Planning and development",
+      "guidance": "Content about planning and development."
+    },
+    {
+      "id": "planning-applications",
+      "parent": "planning-and-development",
+      "label": "Planning applications",
+      "guidance": "Content about planning applications."
+    },
+    {
+      "id": "zoning-maps",
+      "parent": "planning-and-development",
+      "label": "Zoning maps",
+      "guidance": "Content about zoning maps."
+    },
+    {
+      "id": "development-plans",
+      "parent": "planning-and-development",
+      "label": "Development plans",
+      "guidance": "Content about development plans."
+    },
+    {
+      "id": "subdivision-consents",
+      "parent": "planning-and-development",
+      "label": "Subdivision consents",
+      "guidance": "Content about subdivision consents."
+    },
+    {
+      "id": "heritage-listings",
+      "parent": "planning-and-development",
+      "label": "Heritage listings",
+      "guidance": "Content about heritage listings."
+    },
+    {
+      "id": "design-guidelines",
+      "parent": "planning-and-development",
+      "label": "Design guidelines",
+      "guidance": "Content about design guidelines."
+    },
+    {
+      "id": "land-use-appeals",
+      "parent": "planning-and-development",
+      "label": "Land use appeals",
+      "guidance": "Content about land use appeals."
+    },
+    {
+      "id": "growth-strategy",
+      "parent": "planning-and-development",
+      "label": "Growth strategy",
+      "guidance": "Content about growth strategy."
+    },
+    {
+      "id": "infrastructure-plans",
+      "parent": "planning-and-development",
+      "label": "Infrastructure plans",
+      "guidance": "Content about infrastructure plans."
+    },
+    {
+      "id": "resource-consents",
+      "parent": "planning-and-development",
+      "label": "Resource consents",
+      "guidance": "Content about resource consents."
+    },
+    {
+      "id": "planning-fees",
+      "parent": "planning-and-development",
+      "label": "Planning fees",
+      "guidance": "Content about planning fees."
+    },
+    {
+      "id": "structure-plans",
+      "parent": "planning-and-development",
+      "label": "Structure plans",
+      "guidance": "Content about structure plans."
+    },
+    {
+      "id": "parks-and-recreation",
+      "parent": null,
+      "label": "Parks and recreation",
+      "guidance": "Content about parks and recreation."
+    },
+    {
+      "id": "playgrounds",
+      "parent": "parks-and-recreation",
+      "label": "Playgrounds",
+      "guidance": "Content about playgrounds."
+    },
+    {
+      "id": "sports-fields",
+      "parent": "parks-and-recreation",
+      "label": "Sports fields",
+      "guidance": "Content about sports fields."
+    },
+    {
+      "id": "walking-trails",
+      "parent": "parks-and-recreation",
+      "label": "Walking trails",
+      "guidance": "Content about walking trails."
+    },
+    {
+      "id": "public-pools",
+      "parent": "parks-and-recreation",
+      "label": "Public pools",
+      "guidance": "Content about public pools."
+    },
+    {
+      "id": "community-gardens",
+      "parent": "parks-and-recreation",
+      "label": "Community gardens",
+      "guidance": "Content about community gardens."
+    },
+    {
+      "id": "dog-parks",
+      "parent": "parks-and-recreation",
+      "label": "Dog parks",
+      "guidance": "Content about dog parks."
+    },
+    {
+      "id": "picnic-areas",
+      "parent": "parks-and-recreation",
+      "label": "Picnic areas",
+      "guidance": "Content about picnic areas."
+    },
+    {
+      "id": "reserve-bookings",
+      "parent": "parks-and-recreation",
+      "label": "Reserve bookings",
+      "guidance": "Content about reserve bookings."
+    },
+    {
+      "id": "skate-parks",
+      "parent": "parks-and-recreation",
+      "label": "Skate parks",
+      "guidance": "Content about skate parks."
+    },
+    {
+      "id": "boat-ramps",
+      "parent": "parks-and-recreation",
+      "label": "Boat ramps",
+      "guidance": "Content about boat ramps."
+    },
+    {
+      "id": "park-maintenance",
+      "parent": "parks-and-recreation",
+      "label": "Park maintenance",
+      "guidance": "Content about park maintenance."
+    },
+    {
+      "id": "outdoor-fitness",
+      "parent": "parks-and-recreation",
+      "label": "Outdoor fitness",
+      "guidance": "Content about outdoor fitness."
+    },
+    {
+      "id": "roads-and-transport",
+      "parent": null,
+      "label": "Roads and transport",
+      "guidance": "Content about roads and transport."
+    },
+    {
+      "id": "road-works",
+      "parent": "roads-and-transport",
+      "label": "Road works",
+      "guidance": "Content about road works."
+    },
+    {
+      "id": "street-lighting",
+      "parent": "roads-and-transport",
+      "label": "Street lighting",
+      "guidance": "Content about street lighting."
+    },
+    {
+      "id": "footpaths",
+      "parent": "roads-and-transport",
+      "label": "Footpaths",
+      "guidance": "Content about footpaths."
+    },
+    {
+      "id": "cycleways",
+      "parent": "roads-and-transport",
+      "label": "Cycleways",
+      "guidance": "Content about cycleways."
+    },
+    {
+      "id": "parking-permits",
+      "parent": "roads-and-transport",
+      "label": "Parking permits",
+      "guidance": "Content about parking permits."
+    },
+    {
+      "id": "bus-services",
+      "parent": "roads-and-transport",
+      "label": "Bus services",
+      "guidance": "Content about bus services."
+    },
+    {
+      "id": "traffic-calming",
+      "parent": "roads-and-transport",
+      "label": "Traffic calming",
+      "guidance": "Content about traffic calming."
+    },
+    {
+      "id": "bridge-maintenance",
+      "parent": "roads-and-transport",
+      "label": "Bridge maintenance",
+      "guidance": "Content about bridge maintenance."
+    },
+    {
+      "id": "snow-clearing",
+      "parent": "roads-and-transport",
+      "label": "Snow clearing",
+      "guidance": "Content about snow clearing."
+    },
+    {
+      "id": "street-signage",
+      "parent": "roads-and-transport",
+      "label": "Street signage",
+      "guidance": "Content about street signage."
+    },
+    {
+      "id": "road-closures",
+      "parent": "roads-and-transport",
+      "label": "Road closures",
+      "guidance": "Content about road closures."
+    },
+    {
+      "id": "park-and-ride",
+      "parent": "roads-and-transport",
+      "label": "Park and ride",
+      "guidance": "Content about park and ride."
+    },
+    {
+      "id": "libraries",
+      "parent": null,
+      "label": "Libraries",
+      "guidance": "Content about libraries."
+    },
+    {
+      "id": "branch-hours",
+      "parent": "libraries",
+      "label": "Branch hours",
+      "guidance": "Content about branch hours."
+    },
+    {
+      "id": "borrowing-rules",
+      "parent": "libraries",
+      "label": "Borrowing rules",
+      "guidance": "Content about borrowing rules."
+    },
+    {
+      "id": "digital-collections",
+      "parent": "libraries",
+      "label": "Digital collections",
+      "guidance": "Content about digital collections."
+    },
+    {
+      "id": "story-time",
+      "parent": "libraries",
+      "label": "Story time",
+      "guidance": "Content about story time."
+    },
+    {
+      "id": "study-rooms",
+      "parent": "libraries",
+      "label": "Study rooms",
+      "guidance": "Content about study rooms."
+    },
+    {
+      "id": "interlibrary-loans",
+      "parent": "libraries",
+      "label": "Interlibrary loans",
+      "guidance": "Content about interlibrary loans."
+    },
+    {
+      "id": "local-history",
+      "parent": "libraries",
+      "label": "Local history",
+      "guidance": "Content about local history."
+    },
+    {
+      "id": "author-talks",
+      "parent": "libraries",
+      "label": "Author talks",
+      "guidance": "Content about author talks."
+    },
+    {
+      "id": "computer-access",
+      "parent": "libraries",
+      "label": "Computer access",
+      "guidance": "Content about computer access."
+    },
+    {
+      "id": "reading-programmes",
+      "parent": "libraries",
+      "label": "Reading programmes",
+      "guidance": "Content about reading programmes."
+    },
+    {
+      "id": "library-events",
+      "parent": "libraries",
+      "label": "Library events",
+      "guidance": "Content about library events."
+    },
+    {
+      "id": "library-membership",
+      "parent": "libraries",
+      "label": "Library membership",
+      "guidance": "Content about library membership."
+    },
+    {
+      "id": "housing",
+      "parent": null,
+      "label": "Housing",
+      "guidance": "Content about housing."
+    },
+    {
+      "id": "social-housing",
+      "parent": "housing",
+      "label": "Social housing",
+      "guidance": "Content about social housing."
+    },
+    {
+      "id": "tenancy-support",
+      "parent": "housing",
+      "label": "Tenancy support",
+      "guidance": "Content about tenancy support."
+    },
+    {
+      "id": "housing-registers",
+      "parent": "housing",
+      "label": "Housing registers",
+      "guidance": "Content about housing registers."
+    },
+    {
+      "id": "rent-assistance",
+      "parent": "housing",
+      "label": "Rent assistance",
+      "guidance": "Content about rent assistance."
+    },
+    {
+      "id": "homelessness-services",
+      "parent": "housing",
+      "label": "Homelessness services",
+      "guidance": "Content about homelessness services."
+    },
+    {
+      "id": "housing-standards",
+      "parent": "housing",
+      "label": "Housing standards",
+      "guidance": "Content about housing standards."
+    },
+    {
+      "id": "accessible-housing",
+      "parent": "housing",
+      "label": "Accessible housing",
+      "guidance": "Content about accessible housing."
+    },
+    {
+      "id": "emergency-accommodation",
+      "parent": "housing",
+      "label": "Emergency accommodation",
+      "guidance": "Content about emergency accommodation."
+    },
+    {
+      "id": "landlord-guidance",
+      "parent": "housing",
+      "label": "Landlord guidance",
+      "guidance": "Content about landlord guidance."
+    },
+    {
+      "id": "housing-repairs",
+      "parent": "housing",
+      "label": "Housing repairs",
+      "guidance": "Content about housing repairs."
+    },
+    {
+      "id": "allocations-policy",
+      "parent": "housing",
+      "label": "Allocations policy",
+      "guidance": "Content about allocations policy."
+    },
+    {
+      "id": "housing-appeals",
+      "parent": "housing",
+      "label": "Housing appeals",
+      "guidance": "Content about housing appeals."
+    },
+    {
+      "id": "business-and-licensing",
+      "parent": null,
+      "label": "Business and licensing",
+      "guidance": "Content about business and licensing."
+    },
+    {
+      "id": "business-permits",
+      "parent": "business-and-licensing",
+      "label": "Business permits",
+      "guidance": "Content about business permits."
+    },
+    {
+      "id": "food-licences",
+      "parent": "business-and-licensing",
+      "label": "Food licences",
+      "guidance": "Content about food licences."
+    },
+    {
+      "id": "liquor-licences",
+      "parent": "business-and-licensing",
+      "label": "Liquor licences",
+      "guidance": "Content about liquor licences."
+    },
+    {
+      "id": "market-stalls",
+      "parent": "business-and-licensing",
+      "label": "Market stalls",
+      "guidance": "Content about market stalls."
+    },
+    {
+      "id": "signage-permits",
+      "parent": "business-and-licensing",
+      "label": "Signage permits",
+      "guidance": "Content about signage permits."
+    },
+    {
+      "id": "event-permits",
+      "parent": "business-and-licensing",
+      "label": "Event permits",
+      "guidance": "Content about event permits."
+    },
+    {
+      "id": "trade-waste",
+      "parent": "business-and-licensing",
+      "label": "Trade waste",
+      "guidance": "Content about trade waste."
+    },
+    {
+      "id": "home-businesses",
+      "parent": "business-and-licensing",
+      "label": "Home businesses",
+      "guidance": "Content about home businesses."
+    },
+    {
+      "id": "licence-renewals",
+      "parent": "business-and-licensing",
+      "label": "Licence renewals",
+      "guidance": "Content about licence renewals."
+    },
+    {
+      "id": "inspection-reports",
+      "parent": "business-and-licensing",
+      "label": "Inspection reports",
+      "guidance": "Content about inspection reports."
+    },
+    {
+      "id": "mobile-vendors",
+      "parent": "business-and-licensing",
+      "label": "Mobile vendors",
+      "guidance": "Content about mobile vendors."
+    },
+    {
+      "id": "entertainment-licences",
+      "parent": "business-and-licensing",
+      "label": "Entertainment licences",
+      "guidance": "Content about entertainment licences."
+    },
+    {
+      "id": "environment",
+      "parent": null,
+      "label": "Environment",
+      "guidance": "Content about environment."
+    },
+    {
+      "id": "air-quality",
+      "parent": "environment",
+      "label": "Air quality",
+      "guidance": "Content about air quality."
+    },
+    {
+      "id": "noise-control",
+      "parent": "environment",
+      "label": "Noise control",
+      "guidance": "Content about noise control."
+    },
+    {
+      "id": "tree-protection",
+      "parent": "environment",
+      "label": "Tree protection",
+      "guidance": "Content about tree protection."
+    },
+    {
+      "id": "biodiversity",
+      "parent": "environment",
+      "label": "Biodiversity",
+      "guidance": "Content about biodiversity."
+    },
+    {
+      "id": "coastal-management",
+      "parent": "environment",
+      "label": "Coastal management",
+      "guidance": "Content about coastal management."
+    },
+    {
+      "id": "contaminated-land",
+      "parent": "environment",
+      "label": "Contaminated land",
+      "guidance": "Content about contaminated land."
+    },
+    {
+      "id": "climate-action",
+      "parent": "environment",
+      "label": "Climate action",
+      "guidance": "Content about climate action."
+    },
+    {
+      "id": "energy-efficiency",
+      "parent": "environment",
+      "label": "Energy efficiency",
+      "guidance": "Content about energy efficiency."
+    },
+    {
+      "id": "pest-control",
+      "parent": "environment",
+      "label": "Pest control",
+      "guidance": "Content about pest control."
+    },
+    {
+      "id": "waterway-health",
+      "parent": "environment",
+      "label": "Waterway health",
+      "guidance": "Content about waterway health."
+    },
+    {
+      "id": "conservation-grants",
+      "parent": "environment",
+      "label": "Conservation grants",
+      "guidance": "Content about conservation grants."
+    },
+    {
+      "id": "environmental-monitoring",
+      "parent": "environment",
+      "label": "Environmental monitoring",
+      "guidance": "Content about environmental monitoring."
+    },
+    {
+      "id": "water-and-drainage",
+      "parent": null,
+      "label": "Water and drainage",
+      "guidance": "Content about water and drainage."
+    },
+    {
+      "id": "water-supply",
+      "parent": "water-and-drainage",
+      "label": "Water supply",
+      "guidance": "Content about water supply."
+    },
+    {
+      "id": "water-quality",
+      "parent": "water-and-drainage",
+      "label": "Water quality",
+      "guidance": "Content about water quality."
+    },
+    {
+      "id": "stormwater",
+      "parent": "water-and-drainage",
+      "label": "Stormwater",
+      "guidance": "Content about stormwater."
+    },
+    {
+      "id": "wastewater",
+      "parent": "water-and-drainage",
+      "label": "Wastewater",
+      "guidance": "Content about wastewater."
+    },
+    {
+      "id": "drainage-maintenance",
+      "parent": "water-and-drainage",
+      "label": "Drainage maintenance",
+      "guidance": "Content about drainage maintenance."
+    },
+    {
+      "id": "water-restrictions",
+      "parent": "water-and-drainage",
+      "label": "Water restrictions",
+      "guidance": "Content about water restrictions."
+    },
+    {
+      "id": "leak-reporting",
+      "parent": "water-and-drainage",
+      "label": "Leak reporting",
+      "guidance": "Content about leak reporting."
+    },
+    {
+      "id": "backflow-prevention",
+      "parent": "water-and-drainage",
+      "label": "Backflow prevention",
+      "guidance": "Content about backflow prevention."
+    },
+    {
+      "id": "septic-systems",
+      "parent": "water-and-drainage",
+      "label": "Septic systems",
+      "guidance": "Content about septic systems."
+    },
+    {
+      "id": "flood-mitigation",
+      "parent": "water-and-drainage",
+      "label": "Flood mitigation",
+      "guidance": "Content about flood mitigation."
+    },
+    {
+      "id": "water-billing",
+      "parent": "water-and-drainage",
+      "label": "Water billing",
+      "guidance": "Content about water billing."
+    },
+    {
+      "id": "hydrant-access",
+      "parent": "water-and-drainage",
+      "label": "Hydrant access",
+      "guidance": "Content about hydrant access."
+    },
+    {
+      "id": "health-services",
+      "parent": null,
+      "label": "Health services",
+      "guidance": "Content about health services."
+    },
+    {
+      "id": "immunisation",
+      "parent": "health-services",
+      "label": "Immunisation",
+      "guidance": "Content about immunisation."
+    },
+    {
+      "id": "public-health-alerts",
+      "parent": "health-services",
+      "label": "Public health alerts",
+      "guidance": "Content about public health alerts."
+    },
+    {
+      "id": "food-safety",
+      "parent": "health-services",
+      "label": "Food safety",
+      "guidance": "Content about food safety."
+    },
+    {
+      "id": "sexual-health",
+      "parent": "health-services",
+      "label": "Sexual health",
+      "guidance": "Content about sexual health."
+    },
+    {
+      "id": "mental-health",
+      "parent": "health-services",
+      "label": "Mental health",
+      "guidance": "Content about mental health."
+    },
+    {
+      "id": "smoking-cessation",
+      "parent": "health-services",
+      "label": "Smoking cessation",
+      "guidance": "Content about smoking cessation."
+    },
+    {
+      "id": "health-inspections",
+      "parent": "health-services",
+      "label": "Health inspections",
+      "guidance": "Content about health inspections."
+    },
+    {
+      "id": "communicable-disease",
+      "parent": "health-services",
+      "label": "Communicable disease",
+      "guidance": "Content about communicable disease."
+    },
+    {
+      "id": "health-promotion",
+      "parent": "health-services",
+      "label": "Health promotion",
+      "guidance": "Content about health promotion."
+    },
+    {
+      "id": "clinic-locations",
+      "parent": "health-services",
+      "label": "Clinic locations",
+      "guidance": "Content about clinic locations."
+    },
+    {
+      "id": "screening-programmes",
+      "parent": "health-services",
+      "label": "Screening programmes",
+      "guidance": "Content about screening programmes."
+    },
+    {
+      "id": "environmental-health",
+      "parent": "health-services",
+      "label": "Environmental health",
+      "guidance": "Content about environmental health."
+    },
+    {
+      "id": "social-care",
+      "parent": null,
+      "label": "Social care",
+      "guidance": "Content about social care."
+    },
+    {
+      "id": "aged-care",
+      "parent": "social-care",
+      "label": "Aged care",
+      "guidance": "Content about aged care."
+    },
+    {
+      "id": "disability-support",
+      "parent": "social-care",
+      "label": "Disability support",
+      "guidance": "Content about disability support."
+    },
+    {
+      "id": "child-protection",
+      "parent": "social-care",
+      "label": "Child protection",
+      "guidance": "Content about child protection."
+    },
+    {
+      "id": "family-services",
+      "parent": "social-care",
+      "label": "Family services",
+      "guidance": "Content about family services."
+    },
+    {
+      "id": "respite-care",
+      "parent": "social-care",
+      "label": "Respite care",
+      "guidance": "Content about respite care."
+    },
+    {
+      "id": "carer-support",
+      "parent": "social-care",
+      "label": "Carer support",
+      "guidance": "Content about carer support."
+    },
+    {
+      "id": "meals-on-wheels",
+      "parent": "social-care",
+      "label": "Meals on wheels",
+      "guidance": "Content about meals on wheels."
+    },
+    {
+      "id": "day-centres",
+      "parent": "social-care",
+      "label": "Day centres",
+      "guidance": "Content about day centres."
+    },
+    {
+      "id": "advocacy-services",
+      "parent": "social-care",
+      "label": "Advocacy services",
+      "guidance": "Content about advocacy services."
+    },
+    {
+      "id": "safeguarding",
+      "parent": "social-care",
+      "label": "Safeguarding",
+      "guidance": "Content about safeguarding."
+    },
+    {
+      "id": "home-help",
+      "parent": "social-care",
+      "label": "Home help",
+      "guidance": "Content about home help."
+    },
+    {
+      "id": "social-work-referrals",
+      "parent": "social-care",
+      "label": "Social work referrals",
+      "guidance": "Content about social work referrals."
+    },
+    {
+      "id": "education",
+      "parent": null,
+      "label": "Education",
+      "guidance": "Content about education."
+    },
+    {
+      "id": "school-zones",
+      "parent": "education",
+      "label": "School zones",
+      "guidance": "Content about school zones."
+    },
+    {
+      "id": "early-childhood",
+      "parent": "education",
+      "label": "Early childhood",
+      "guidance": "Content about early childhood."
+    },
+    {
+      "id": "adult-learning",
+      "parent": "education",
+      "label": "Adult learning",
+      "guidance": "Content about adult learning."
+    },
+    {
+      "id": "school-transport",
+      "parent": "education",
+      "label": "School transport",
+      "guidance": "Content about school transport."
+    },
+    {
+      "id": "school-holiday-clubs",
+      "parent": "education",
+      "label": "School holiday clubs",
+      "guidance": "Content about school holiday clubs."
+    },
+    {
+      "id": "scholarships",
+      "parent": "education",
+      "label": "Scholarships",
+      "guidance": "Content about scholarships."
+    },
+    {
+      "id": "truancy-services",
+      "parent": "education",
+      "label": "Truancy services",
+      "guidance": "Content about truancy services."
+    },
+    {
+      "id": "special-education",
+      "parent": "education",
+      "label": "Special education",
+      "guidance": "Content about special education."
+    },
+    {
+      "id": "school-meals",
+      "parent": "education",
+      "label": "School meals",
+      "guidance": "Content about school meals."
+    },
+    {
+      "id": "parent-resources",
+      "parent": "education",
+      "label": "Parent resources",
+      "guidance": "Content about parent resources."
+    },
+    {
+      "id": "careers-guidance",
+      "parent": "education",
+      "label": "Careers guidance",
+      "guidance": "Content about careers guidance."
+    },
+    {
+      "id": "tutoring-support",
+      "parent": "education",
+      "label": "Tutoring support",
+      "guidance": "Content about tutoring support."
+    },
+    {
+      "id": "elections",
+      "parent": null,
+      "label": "Elections",
+      "guidance": "Content about elections."
+    },
+    {
+      "id": "voter-registration",
+      "parent": "elections",
+      "label": "Voter registration",
+      "guidance": "Content about voter registration."
+    },
+    {
+      "id": "polling-places",
+      "parent": "elections",
+      "label": "Polling places",
+      "guidance": "Content about polling places."
+    },
+    {
+      "id": "candidate-information",
+      "parent": "elections",
+      "label": "Candidate information",
+      "guidance": "Content about candidate information."
+    },
+    {
+      "id": "postal-voting",
+      "parent": "elections",
+      "label": "Postal voting",
+      "guidance": "Content about postal voting."
+    },
+    {
+      "id": "election-results",
+      "parent": "elections",
+      "label": "Election results",
+      "guidance": "Content about election results."
+    },
+    {
+      "id": "electoral-boundaries",
+      "parent": "elections",
+      "label": "Electoral boundaries",
+      "guidance": "Content about electoral boundaries."
+    },
+    {
+      "id": "referendums",
+      "parent": "elections",
+      "label": "Referendums",
+      "guidance": "Content about referendums."
+    },
+    {
+      "id": "election-notices",
+      "parent": "elections",
+      "label": "Election notices",
+      "guidance": "Content about election notices."
+    },
+    {
+      "id": "campaign-rules",
+      "parent": "elections",
+      "label": "Campaign rules",
+      "guidance": "Content about campaign rules."
+    },
+    {
+      "id": "scrutineers",
+      "parent": "elections",
+      "label": "Scrutineers",
+      "guidance": "Content about scrutineers."
+    },
+    {
+      "id": "by-elections",
+      "parent": "elections",
+      "label": "By elections",
+      "guidance": "Content about by elections."
+    },
+    {
+      "id": "voting-accessibility",
+      "parent": "elections",
+      "label": "Voting accessibility",
+      "guidance": "Content about voting accessibility."
+    },
+    {
+      "id": "finance-and-rates",
+      "parent": null,
+      "label": "Finance and rates",
+      "guidance": "Content about finance and rates."
+    },
+    {
+      "id": "rates-notices",
+      "parent": "finance-and-rates",
+      "label": "Rates notices",
+      "guidance": "Content about rates notices."
+    },
+    {
+      "id": "rates-rebates",
+      "parent": "finance-and-rates",
+      "label": "Rates rebates",
+      "guidance": "Content about rates rebates."
+    },
+    {
+      "id": "payment-plans",
+      "parent": "finance-and-rates",
+      "label": "Payment plans",
+      "guidance": "Content about payment plans."
+    },
+    {
+      "id": "direct-debit",
+      "parent": "finance-and-rates",
+      "label": "Direct debit",
+      "guidance": "Content about direct debit."
+    },
+    {
+      "id": "valuation-objections",
+      "parent": "finance-and-rates",
+      "label": "Valuation objections",
+      "guidance": "Content about valuation objections."
+    },
+    {
+      "id": "arrears-support",
+      "parent": "finance-and-rates",
+      "label": "Arrears support",
+      "guidance": "Content about arrears support."
+    },
+    {
+      "id": "fees-and-charges",
+      "parent": "finance-and-rates",
+      "label": "Fees and charges",
+      "guidance": "Content about fees and charges."
+    },
+    {
+      "id": "financial-statements",
+      "parent": "finance-and-rates",
+      "label": "Financial statements",
+      "guidance": "Content about financial statements."
+    },
+    {
+      "id": "grants-funding",
+      "parent": "finance-and-rates",
+      "label": "Grants funding",
+      "guidance": "Content about grants funding."
+    },
+    {
+      "id": "invoicing",
+      "parent": "finance-and-rates",
+      "label": "Invoicing",
+      "guidance": "Content about invoicing."
+    },
+    {
+      "id": "penalty-remission",
+      "parent": "finance-and-rates",
+      "label": "Penalty remission",
+      "guidance": "Content about penalty remission."
+    },
+    {
+      "id": "rates-calculator",
+      "parent": "finance-and-rates",
+      "label": "Rates calculator",
+      "guidance": "Content about rates calculator."
+    },
+    {
+      "id": "animal-services",
+      "parent": null,
+      "label": "Animal services",
+      "guidance": "Content about animal services."
+    },
+    {
+      "id": "dog-registration",
+      "parent": "animal-services",
+      "label": "Dog registration",
+      "guidance": "Content about dog registration."
+    },
+    {
+      "id": "animal-control",
+      "parent": "animal-services",
+      "label": "Animal control",
+      "guidance": "Content about animal control."
+    },
+    {
+      "id": "lost-and-found-pets",
+      "parent": "animal-services",
+      "label": "Lost and found pets",
+      "guidance": "Content about lost and found pets."
+    },
+    {
+      "id": "impound-services",
+      "parent": "animal-services",
+      "label": "Impound services",
+      "guidance": "Content about impound services."
+    },
+    {
+      "id": "wildlife-reporting",
+      "parent": "animal-services",
+      "label": "Wildlife reporting",
+      "guidance": "Content about wildlife reporting."
+    },
+    {
+      "id": "livestock-permits",
+      "parent": "animal-services",
+      "label": "Livestock permits",
+      "guidance": "Content about livestock permits."
+    },
+    {
+      "id": "barking-complaints",
+      "parent": "animal-services",
+      "label": "Barking complaints",
+      "guidance": "Content about barking complaints."
+    },
+    {
+      "id": "dangerous-dogs",
+      "parent": "animal-services",
+      "label": "Dangerous dogs",
+      "guidance": "Content about dangerous dogs."
+    },
+    {
+      "id": "microchipping",
+      "parent": "animal-services",
+      "label": "Microchipping",
+      "guidance": "Content about microchipping."
+    },
+    {
+      "id": "animal-welfare",
+      "parent": "animal-services",
+      "label": "Animal welfare",
+      "guidance": "Content about animal welfare."
+    },
+    {
+      "id": "beekeeping",
+      "parent": "animal-services",
+      "label": "Beekeeping",
+      "guidance": "Content about beekeeping."
+    },
+    {
+      "id": "pet-adoption",
+      "parent": "animal-services",
+      "label": "Pet adoption",
+      "guidance": "Content about pet adoption."
+    },
+    {
+      "id": "cemeteries",
+      "parent": null,
+      "label": "Cemeteries",
+      "guidance": "Content about cemeteries."
+    },
+    {
+      "id": "burial-plots",
+      "parent": "cemeteries",
+      "label": "Burial plots",
+      "guidance": "Content about burial plots."
+    },
+    {
+      "id": "cremation-services",
+      "parent": "cemeteries",
+      "label": "Cremation services",
+      "guidance": "Content about cremation services."
+    },
+    {
+      "id": "memorial-gardens",
+      "parent": "cemeteries",
+      "label": "Memorial gardens",
+      "guidance": "Content about memorial gardens."
+    },
+    {
+      "id": "grave-maintenance",
+      "parent": "cemeteries",
+      "label": "Grave maintenance",
+      "guidance": "Content about grave maintenance."
+    },
+    {
+      "id": "plot-purchase",
+      "parent": "cemeteries",
+      "label": "Plot purchase",
+      "guidance": "Content about plot purchase."
+    },
+    {
+      "id": "burial-records",
+      "parent": "cemeteries",
+      "label": "Burial records",
+      "guidance": "Content about burial records."
+    },
+    {
+      "id": "ash-interment",
+      "parent": "cemeteries",
+      "label": "Ash interment",
+      "guidance": "Content about ash interment."
+    },
+    {
+      "id": "headstone-permits",
+      "parent": "cemeteries",
+      "label": "Headstone permits",
+      "guidance": "Content about headstone permits."
+    },
+    {
+      "id": "cemetery-hours",
+      "parent": "cemeteries",
+      "label": "Cemetery hours",
+      "guidance": "Content about cemetery hours."
+    },
+    {
+      "id": "funeral-directors",
+      "parent": "cemeteries",
+      "label": "Funeral directors",
+      "guidance": "Content about funeral directors."
+    },
+    {
+      "id": "war-graves",
+      "parent": "cemeteries",
+      "label": "War graves",
+      "guidance": "Content about war graves."
+    },
+    {
+      "id": "natural-burial",
+      "parent": "cemeteries",
+      "label": "Natural burial",
+      "guidance": "Content about natural burial."
+    },
+    {
+      "id": "tourism",
+      "parent": null,
+      "label": "Tourism",
+      "guidance": "Content about tourism."
+    },
+    {
+      "id": "visitor-centres",
+      "parent": "tourism",
+      "label": "Visitor centres",
+      "guidance": "Content about visitor centres."
+    },
+    {
+      "id": "walking-tours",
+      "parent": "tourism",
+      "label": "Walking tours",
+      "guidance": "Content about walking tours."
+    },
+    {
+      "id": "accommodation-guide",
+      "parent": "tourism",
+      "label": "Accommodation guide",
+      "guidance": "Content about accommodation guide."
+    },
+    {
+      "id": "local-attractions",
+      "parent": "tourism",
+      "label": "Local attractions",
+      "guidance": "Content about local attractions."
+    },
+    {
+      "id": "event-calendar",
+      "parent": "tourism",
+      "label": "Event calendar",
+      "guidance": "Content about event calendar."
+    },
+    {
+      "id": "travel-advice",
+      "parent": "tourism",
+      "label": "Travel advice",
+      "guidance": "Content about travel advice."
+    },
+    {
+      "id": "camping-grounds",
+      "parent": "tourism",
+      "label": "Camping grounds",
+      "guidance": "Content about camping grounds."
+    },
+    {
+      "id": "scenic-routes",
+      "parent": "tourism",
+      "label": "Scenic routes",
+      "guidance": "Content about scenic routes."
+    },
+    {
+      "id": "visitor-parking",
+      "parent": "tourism",
+      "label": "Visitor parking",
+      "guidance": "Content about visitor parking."
+    },
+    {
+      "id": "regional-maps",
+      "parent": "tourism",
+      "label": "Regional maps",
+      "guidance": "Content about regional maps."
+    },
+    {
+      "id": "tour-operators",
+      "parent": "tourism",
+      "label": "Tour operators",
+      "guidance": "Content about tour operators."
+    },
+    {
+      "id": "seasonal-guides",
+      "parent": "tourism",
+      "label": "Seasonal guides",
+      "guidance": "Content about seasonal guides."
+    },
+    {
+      "id": "arts-and-culture",
+      "parent": null,
+      "label": "Arts and culture",
+      "guidance": "Content about arts and culture."
+    },
+    {
+      "id": "public-art",
+      "parent": "arts-and-culture",
+      "label": "Public art",
+      "guidance": "Content about public art."
+    },
+    {
+      "id": "museums",
+      "parent": "arts-and-culture",
+      "label": "Museums",
+      "guidance": "Content about museums."
+    },
+    {
+      "id": "galleries",
+      "parent": "arts-and-culture",
+      "label": "Galleries",
+      "guidance": "Content about galleries."
+    },
+    {
+      "id": "heritage-trails",
+      "parent": "arts-and-culture",
+      "label": "Heritage trails",
+      "guidance": "Content about heritage trails."
+    },
+    {
+      "id": "performance-venues",
+      "parent": "arts-and-culture",
+      "label": "Performance venues",
+      "guidance": "Content about performance venues."
+    },
+    {
+      "id": "cultural-grants",
+      "parent": "arts-and-culture",
+      "label": "Cultural grants",
+      "guidance": "Content about cultural grants."
+    },
+    {
+      "id": "artist-residencies",
+      "parent": "arts-and-culture",
+      "label": "Artist residencies",
+      "guidance": "Content about artist residencies."
+    },
+    {
+      "id": "community-theatre",
+      "parent": "arts-and-culture",
+      "label": "Community theatre",
+      "guidance": "Content about community theatre."
+    },
+    {
+      "id": "music-programmes",
+      "parent": "arts-and-culture",
+      "label": "Music programmes",
+      "guidance": "Content about music programmes."
+    },
+    {
+      "id": "craft-markets",
+      "parent": "arts-and-culture",
+      "label": "Craft markets",
+      "guidance": "Content about craft markets."
+    },
+    {
+      "id": "cultural-festivals",
+      "parent": "arts-and-culture",
+      "label": "Cultural festivals",
+      "guidance": "Content about cultural festivals."
+    },
+    {
+      "id": "archives-access",
+      "parent": "arts-and-culture",
+      "label": "Archives access",
+      "guidance": "Content about archives access."
+    },
+    {
+      "id": "building-control",
+      "parent": null,
+      "label": "Building control",
+      "guidance": "Content about building control."
+    },
+    {
+      "id": "building-consents",
+      "parent": "building-control",
+      "label": "Building consents",
+      "guidance": "Content about building consents."
+    },
+    {
+      "id": "code-compliance",
+      "parent": "building-control",
+      "label": "Code compliance",
+      "guidance": "Content about code compliance."
+    },
+    {
+      "id": "inspections-booking",
+      "parent": "building-control",
+      "label": "Inspections booking",
+      "guidance": "Content about inspections booking."
+    },
+    {
+      "id": "structural-reviews",
+      "parent": "building-control",
+      "label": "Structural reviews",
+      "guidance": "Content about structural reviews."
+    },
+    {
+      "id": "earthquake-strengthening",
+      "parent": "building-control",
+      "label": "Earthquake strengthening",
+      "guidance": "Content about earthquake strengthening."
+    },
+    {
+      "id": "pool-fencing",
+      "parent": "building-control",
+      "label": "Pool fencing",
+      "guidance": "Content about pool fencing."
+    },
+    {
+      "id": "accessibility-compliance",
+      "parent": "building-control",
+      "label": "Accessibility compliance",
+      "guidance": "Content about accessibility compliance."
+    },
+    {
+      "id": "demolition-permits",
+      "parent": "building-control",
+      "label": "Demolition permits",
+      "guidance": "Content about demolition permits."
+    },
+    {
+      "id": "building-warrants",
+      "parent": "building-control",
+      "label": "Building warrants",
+      "guidance": "Content about building warrants."
+    },
+    {
+      "id": "site-safety",
+      "parent": "building-control",
+      "label": "Site safety",
+      "guidance": "Content about site safety."
+    },
+    {
+      "id": "occupancy-certificates",
+      "parent": "building-control",
+      "label": "Occupancy certificates",
+      "guidance": "Content about occupancy certificates."
+    },
+    {
+      "id": "consent-exemptions",
+      "parent": "building-control",
+      "label": "Consent exemptions",
+      "guidance": "Content about consent exemptions."
+    },
+    {
+      "id": "procurement",
+      "parent": null,
+      "label": "Procurement",
+      "guidance": "Content about procurement."
+    },
+    {
+      "id": "tender-process",
+      "parent": "procurement",
+      "label": "Tender process",
+      "guidance": "Content about tender process."
+    },
+    {
+      "id": "supplier-registration",
+      "parent": "procurement",
+      "label": "Supplier registration",
+      "guidance": "Content about supplier registration."
+    },
+    {
+      "id": "contract-awards",
+      "parent": "procurement",
+      "label": "Contract awards",
+      "guidance": "Content about contract awards."
+    },
+    {
+      "id": "procurement-policy",
+      "parent": "procurement",
+      "label": "Procurement policy",
+      "guidance": "Content about procurement policy."
+    },
+    {
+      "id": "panel-agreements",
+      "parent": "procurement",
+      "label": "Panel agreements",
+      "guidance": "Content about panel agreements."
+    },
+    {
+      "id": "request-for-proposal",
+      "parent": "procurement",
+      "label": "Request for proposal",
+      "guidance": "Content about request for proposal."
+    },
+    {
+      "id": "evaluation-criteria",
+      "parent": "procurement",
+      "label": "Evaluation criteria",
+      "guidance": "Content about evaluation criteria."
+    },
+    {
+      "id": "contract-variations",
+      "parent": "procurement",
+      "label": "Contract variations",
+      "guidance": "Content about contract variations."
+    },
+    {
+      "id": "social-procurement",
+      "parent": "procurement",
+      "label": "Social procurement",
+      "guidance": "Content about social procurement."
+    },
+    {
+      "id": "supplier-payments",
+      "parent": "procurement",
+      "label": "Supplier payments",
+      "guidance": "Content about supplier payments."
+    },
+    {
+      "id": "conflict-declarations",
+      "parent": "procurement",
+      "label": "Conflict declarations",
+      "guidance": "Content about conflict declarations."
+    },
+    {
+      "id": "tender-debriefs",
+      "parent": "procurement",
+      "label": "Tender debriefs",
+      "guidance": "Content about tender debriefs."
+    },
+    {
+      "id": "records-and-foi",
+      "parent": null,
+      "label": "Records and foi",
+      "guidance": "Content about records and foi."
+    },
+    {
+      "id": "information-requests",
+      "parent": "records-and-foi",
+      "label": "Information requests",
+      "guidance": "Content about information requests."
+    },
+    {
+      "id": "records-retention",
+      "parent": "records-and-foi",
+      "label": "Records retention",
+      "guidance": "Content about records retention."
+    },
+    {
+      "id": "privacy-requests",
+      "parent": "records-and-foi",
+      "label": "Privacy requests",
+      "guidance": "Content about privacy requests."
+    },
+    {
+      "id": "public-registers",
+      "parent": "records-and-foi",
+      "label": "Public registers",
+      "guidance": "Content about public registers."
+    },
+    {
+      "id": "archive-access",
+      "parent": "records-and-foi",
+      "label": "Archive access",
+      "guidance": "Content about archive access."
+    },
+    {
+      "id": "data-releases",
+      "parent": "records-and-foi",
+      "label": "Data releases",
+      "guidance": "Content about data releases."
+    },
+    {
+      "id": "request-fees",
+      "parent": "records-and-foi",
+      "label": "Request fees",
+      "guidance": "Content about request fees."
+    },
+    {
+      "id": "response-timeframes",
+      "parent": "records-and-foi",
+      "label": "Response timeframes",
+      "guidance": "Content about response timeframes."
+    },
+    {
+      "id": "redaction-policy",
+      "parent": "records-and-foi",
+      "label": "Redaction policy",
+      "guidance": "Content about redaction policy."
+    },
+    {
+      "id": "appeals-process",
+      "parent": "records-and-foi",
+      "label": "Appeals process",
+      "guidance": "Content about appeals process."
+    },
+    {
+      "id": "open-data",
+      "parent": "records-and-foi",
+      "label": "Open data",
+      "guidance": "Content about open data."
+    },
+    {
+      "id": "document-search",
+      "parent": "records-and-foi",
+      "label": "Document search",
+      "guidance": "Content about document search."
+    }
+  ]
+}

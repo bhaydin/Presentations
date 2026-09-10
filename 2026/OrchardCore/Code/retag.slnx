@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Retag/Retag.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Retag.Tests/Retag.Tests.csproj" />
+  </Folder>
+</Solution>

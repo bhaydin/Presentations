@@ -1,0 +1,16 @@
+
+  tenant 1 .... canary 40 · 20/20 · COMMITTED  428 items
+  tenant 2 .... canary 40 · 20/20 · COMMITTED  356 items
+  tenant 3 .... canary 40 · 20/20 · COMMITTED  511 items
+  tenant 4 .... canary 40 ·
+
+    OBVIOUS          [████████]  6/6   PASS
+    HUMAN-VERIFIED   [████████]  6/6   PASS
+    ARGUED           [██░░░░░░]  2/8   FAIL
+
+    14/20 — every failure chose the parent term
+
+  ❯ CANARY HELD. Proposals remain drafts.
+    0 items committed for this tenant.
+
+  ERRORS: 0     HELD BY POLICY: 1

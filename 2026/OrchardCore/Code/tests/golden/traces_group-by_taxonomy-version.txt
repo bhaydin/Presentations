@@ -1,0 +1,11 @@
+
+  version   decisions   status
+  -------   ---------   ------
+  42            1,100   current
+  41            3,082   SUPERSEDED
+  -------   ---------   ------
+                4,182
+
+  → 3,082 item ids written to replay-v41.txt
+
+  ERRORS: 0     HELD BY POLICY: 0

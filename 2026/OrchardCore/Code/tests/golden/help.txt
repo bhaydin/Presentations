@@ -1,0 +1,26 @@
+
+  retag — AgentOps demo for bulk content re-classification
+
+  COMMANDS
+    seed                       regenerate fixtures and decisions.json
+    run                        replay the overnight re-tag job
+    propose --item <id>        classify one item (--live calls a model)
+    trace show --item <id>     print the span tree for a decision
+    traces group-by <attr>     aggregate decisions by span attribute
+    replay --from <file>       re-evaluate under another taxonomy
+    stop --job <id>            write a stop flag
+    release --job <id>         clear a stop flag
+    reset                      restore the green baseline
+
+  RUN FLAGS
+    --taxonomy <name>          taxonomy to load
+    --workers <n>              tenant workers
+    --lot tenant               one tenant per lot
+    --canary <n>               canary size; gates the lot
+    --release <n>              agent release (17 or 18)
+    --gate tenant-boundary     hold before crossing tenants
+    --live                     real model calls in the canary
+
+  No Azure credentials are needed except for --live.
+
+  ERRORS: 0     HELD BY POLICY: 0

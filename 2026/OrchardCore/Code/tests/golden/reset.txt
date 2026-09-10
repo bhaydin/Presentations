@@ -1,0 +1,9 @@
+
+  clearing stop flags ............ done
+  removing output files .......... done
+  regenerating fixtures .......... 5 files
+  reseeding decisions ............ 4,182
+
+  baseline restored.
+
+  ERRORS: 0     HELD BY POLICY: 0

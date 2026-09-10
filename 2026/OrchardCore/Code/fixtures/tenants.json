@@ -1,0 +1,74 @@
+[
+  {
+    "index": 1,
+    "id": "north-shore-council",
+    "name": "North Shore Council",
+    "itemCount": 428
+  },
+  {
+    "index": 2,
+    "id": "west-valley-district",
+    "name": "West Valley District",
+    "itemCount": 356
+  },
+  {
+    "index": 3,
+    "id": "eastmoor-borough",
+    "name": "Eastmoor Borough",
+    "itemCount": 511
+  },
+  {
+    "index": 4,
+    "id": "granite-bay-council",
+    "name": "Granite Bay Council",
+    "itemCount": 392
+  },
+  {
+    "index": 5,
+    "id": "fairfield-township",
+    "name": "Fairfield Township",
+    "itemCount": 274
+  },
+  {
+    "index": 6,
+    "id": "lakeside-district",
+    "name": "Lakeside District",
+    "itemCount": 336
+  },
+  {
+    "index": 7,
+    "id": "redstone-council",
+    "name": "Redstone Council",
+    "itemCount": 301
+  },
+  {
+    "index": 8,
+    "id": "harbourview-borough",
+    "name": "Harbourview Borough",
+    "itemCount": 358
+  },
+  {
+    "index": 9,
+    "id": "pinehurst-township",
+    "name": "Pinehurst Township",
+    "itemCount": 245
+  },
+  {
+    "index": 10,
+    "id": "midvale-district",
+    "name": "Midvale District",
+    "itemCount": 319
+  },
+  {
+    "index": 11,
+    "id": "stonebridge-council",
+    "name": "Stonebridge Council",
+    "itemCount": 383
+  },
+  {
+    "index": 12,
+    "id": "westgate-borough",
+    "name": "Westgate Borough",
+    "itemCount": 279
+  }
+]

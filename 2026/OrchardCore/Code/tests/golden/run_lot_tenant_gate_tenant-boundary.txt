@@ -1,0 +1,11 @@
+
+  batch complete. next lot crosses tenant:
+      from: north-shore-council
+      to:   west-valley-district
+
+  [HELD BY POLICY]
+    Reason:   tenant_boundary
+    Lot:      40 items, 20/20 canary pass
+    Awaiting: human decision (approve / deny)
+
+  ERRORS: 0  |  HELD BY POLICY: 1

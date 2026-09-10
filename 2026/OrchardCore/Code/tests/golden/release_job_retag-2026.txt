@@ -1,0 +1,8 @@
+
+  flag cleared: .run/retag-2026.stopped
+  job status:
+     retag-2026      RUNNING
+     seo-audit       RUNNING
+     link-check      RUNNING
+
+  ERRORS: 0     HELD BY POLICY: 0

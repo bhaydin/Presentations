@@ -1,0 +1,202 @@
+[
+  {
+    "id": "ka-01",
+    "category": "OBVIOUS",
+    "itemId": "known-answers/ka-01",
+    "title": "Kerbside collection moves to Wednesday in Ashwood",
+    "body": "Bin day changes for the Ashwood collection round from the first of next month.",
+    "expectedTerm": "kerbside-collection",
+    "parentTerm": "waste-services",
+    "margin": 0.88
+  },
+  {
+    "id": "ka-02",
+    "category": "OBVIOUS",
+    "itemId": "known-answers/ka-02",
+    "title": "Dog registration renewals open on 1 July",
+    "body": "Renew your dog registration online or at any service centre before the due date.",
+    "expectedTerm": "dog-registration",
+    "parentTerm": "animal-services",
+    "margin": 0.91
+  },
+  {
+    "id": "ka-03",
+    "category": "OBVIOUS",
+    "itemId": "known-answers/ka-03",
+    "title": "Polling places for the district election",
+    "body": "Locations, opening hours and accessibility details for every polling place.",
+    "expectedTerm": "polling-places",
+    "parentTerm": "elections",
+    "margin": 0.86
+  },
+  {
+    "id": "ka-04",
+    "category": "OBVIOUS",
+    "itemId": "known-answers/ka-04",
+    "title": "Purchasing a burial plot at Riverside Cemetery",
+    "body": "Plot availability, pricing and the paperwork required to reserve a burial plot.",
+    "expectedTerm": "burial-plots",
+    "parentTerm": "cemeteries",
+    "margin": 0.84
+  },
+  {
+    "id": "ka-05",
+    "category": "OBVIOUS",
+    "itemId": "known-answers/ka-05",
+    "title": "Applying for a building consent",
+    "body": "What to submit, current processing timeframes and the fees payable on lodgement.",
+    "expectedTerm": "building-consents",
+    "parentTerm": "building-control",
+    "margin": 0.89
+  },
+  {
+    "id": "ka-06",
+    "category": "OBVIOUS",
+    "itemId": "known-answers/ka-06",
+    "title": "Your quarterly rates notice explained",
+    "body": "A line-by-line walkthrough of the charges that appear on a quarterly rates notice.",
+    "expectedTerm": "rates-notices",
+    "parentTerm": "finance-and-rates",
+    "margin": 0.87
+  },
+  {
+    "id": "ka-07",
+    "category": "HUMAN-VERIFIED",
+    "itemId": "known-answers/ka-07",
+    "title": "Garden waste bins over the summer period",
+    "body": "Extra collections run through summer. Only untreated garden material is accepted.",
+    "expectedTerm": "green-waste",
+    "parentTerm": "waste-services",
+    "margin": 0.62
+  },
+  {
+    "id": "ka-08",
+    "category": "HUMAN-VERIFIED",
+    "itemId": "known-answers/ka-08",
+    "title": "Help if you are struggling to pay rent",
+    "body": "Advice, mediation and hardship grants for tenants at risk of falling behind.",
+    "expectedTerm": "tenancy-support",
+    "parentTerm": "housing",
+    "margin": 0.58
+  },
+  {
+    "id": "ka-09",
+    "category": "HUMAN-VERIFIED",
+    "itemId": "known-answers/ka-09",
+    "title": "School bus routes for the new term",
+    "body": "Route maps, stop times and how to apply for a subsidised transport pass.",
+    "expectedTerm": "school-transport",
+    "parentTerm": "education",
+    "margin": 0.66
+  },
+  {
+    "id": "ka-10",
+    "category": "HUMAN-VERIFIED",
+    "itemId": "known-answers/ka-10",
+    "title": "Reporting persistent noise from a neighbouring property",
+    "body": "How the council investigates noise complaints and what evidence helps a case.",
+    "expectedTerm": "noise-control",
+    "parentTerm": "environment",
+    "margin": 0.61
+  },
+  {
+    "id": "ka-11",
+    "category": "HUMAN-VERIFIED",
+    "itemId": "known-answers/ka-11",
+    "title": "Ridge Loop trail reopens after slip repairs",
+    "body": "The upper section of the Ridge Loop is open again following remedial work.",
+    "expectedTerm": "walking-trails",
+    "parentTerm": "parks-and-recreation",
+    "margin": 0.57
+  },
+  {
+    "id": "ka-12",
+    "category": "HUMAN-VERIFIED",
+    "itemId": "known-answers/ka-12",
+    "title": "Food licence renewals for mobile traders",
+    "body": "Renewal windows, inspection requirements and the fee schedule for mobile traders.",
+    "expectedTerm": "food-licences",
+    "parentTerm": "business-and-licensing",
+    "margin": 0.64
+  },
+  {
+    "id": "ka-13",
+    "category": "ARGUED",
+    "itemId": "known-answers/ka-13",
+    "title": "What to do before a severe weather warning",
+    "body": "Preparing a property and a household ahead of a forecast severe weather event.",
+    "expectedTerm": "storm-readiness",
+    "parentTerm": "public-safety",
+    "margin": 0.22
+  },
+  {
+    "id": "ka-14",
+    "category": "ARGUED",
+    "itemId": "known-answers/ka-14",
+    "title": "Sandbag collection points ahead of high tides",
+    "body": "Where to collect sandbags and how to place them around a property.",
+    "expectedTerm": "flood-mitigation",
+    "parentTerm": "water-and-drainage",
+    "margin": 0.19
+  },
+  {
+    "id": "ka-15",
+    "category": "ARGUED",
+    "itemId": "known-answers/ka-15",
+    "title": "Allotment waiting lists at Corner Green",
+    "body": "How allotment plots are allocated and how long the current waiting list is.",
+    "expectedTerm": "community-gardens",
+    "parentTerm": "parks-and-recreation",
+    "margin": 0.24
+  },
+  {
+    "id": "ka-16",
+    "category": "ARGUED",
+    "itemId": "known-answers/ka-16",
+    "title": "Where to go tonight if you have nowhere to stay",
+    "body": "After-hours contacts and locations for emergency accommodation placements.",
+    "expectedTerm": "emergency-accommodation",
+    "parentTerm": "housing",
+    "margin": 0.17
+  },
+  {
+    "id": "ka-17",
+    "category": "ARGUED",
+    "itemId": "known-answers/ka-17",
+    "title": "Boil water notice for the Eastfield supply zone",
+    "body": "Residents in the Eastfield zone should boil drinking water until further notice.",
+    "expectedTerm": "public-health-alerts",
+    "parentTerm": "health-services",
+    "margin": 0.21
+  },
+  {
+    "id": "ka-18",
+    "category": "ARGUED",
+    "itemId": "known-answers/ka-18",
+    "title": "Proposed heritage listing for the Old Granary",
+    "body": "The council is consulting on adding the Old Granary to the heritage schedule.",
+    "expectedTerm": "heritage-listings",
+    "parentTerm": "planning-and-development",
+    "margin": 0.26
+  },
+  {
+    "id": "ka-19",
+    "category": "ARGUED",
+    "itemId": "known-answers/ka-19",
+    "title": "Winter safety across the district",
+    "body": "A round-up of winter hazards, gritting routes and who to call out of hours.",
+    "expectedTerm": "public-safety",
+    "parentTerm": null,
+    "margin": 0.23
+  },
+  {
+    "id": "ka-20",
+    "category": "ARGUED",
+    "itemId": "known-answers/ka-20",
+    "title": "What is on across the district this month",
+    "body": "A monthly round-up of markets, fairs, civic occasions and neighbourhood meetings.",
+    "expectedTerm": "community-events",
+    "parentTerm": null,
+    "margin": 0.28
+  }
+]
