@@ -65,6 +65,12 @@ Rung 0 is the one people skip. It is deliberately the least sophisticated thing
 in this repo: a file in `.run/`, and an `if` at the top of `run`. The thing that
 stops the agent should be simpler than the agent.
 
+Stops are scoped to the `retag-2026` job, its `retag-classifier` tool, or a
+tenant participating in the run. This demo runs all 12 tenants, so a stop for
+any of them holds the whole run before it starts. Unrelated job, tool, and
+tenant flags do not block it. The hold prints the release command for the
+blocking flag; if several flags apply, each must be released before work resumes.
+
 ## What is real and what is a fixture
 
 Be clear about this, because the distinction is the honest framing:

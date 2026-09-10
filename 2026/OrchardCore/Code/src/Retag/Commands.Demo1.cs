@@ -15,7 +15,8 @@ public static partial class Commands
     /// <summary>Column the replay leaders resolve to.</summary>
     private const int ReplayValueColumn = 46;
 
-    private const string DefaultJobId = "retag-2026";
+    public const string DefaultJobId = "retag-2026";
+    public const string ClassifierToolId = "retag-classifier";
     private const int AgentRelease = 17;
 
     public const string ReplayFile = "replay-v41.txt";

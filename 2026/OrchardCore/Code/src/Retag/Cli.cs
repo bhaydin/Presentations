@@ -48,7 +48,9 @@ public static class Cli
     private static async Task<int> Run(Args args, Config config)
     {
         // Rung 0, printed. Any run checks the flag before it starts.
-        if (StopFlags.Active() is { } flag) return Commands.RefuseToStart(flag.Display, flag.Reason);
+        if (StopFlags.Active(Commands.DefaultJobId, Commands.ClassifierToolId,
+                Fixtures.Tenants.Select(t => t.Id)) is { } flag)
+            return Commands.RefuseToStart(flag);
 
         if (args.Has("--gate")) return Commands.RunGate(args);
         if (args.Has("--canary") || args.Has("--lot")) return await Commands.RunCanary(args, config);
