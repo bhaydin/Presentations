@@ -91,6 +91,18 @@ is cheap, but it does not reproduce the scripted 14/20 — the fixture models
 release 18 broadening exactly the argued cases, and a real model does its own
 thing. Pass `--live` to see the real thing; leave it off to see the story.
 
+Live responses must contain exactly one candidate term ID. Capitalization,
+surrounding whitespace or quotes, and trailing punctuation are accepted;
+prose, multiple IDs, empty responses, and unknown terms are invalid. An invalid
+`propose --live` response reports an error and exits 1. In a canary it counts
+as a failed known answer, holds the lot with exit 0, and commits nothing for
+that tenant.
+
+If a live request fails, the demo announces its seeded fallback. Answers
+already evaluated remain in the score, including invalid or incorrect ones;
+only the remaining cases use seeded answers. A new run attempts live calls
+again.
+
 ## Steal this
 
 MIT. Fork it, rename the tools to whatever your platform calls them, throw away

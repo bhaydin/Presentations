@@ -6,10 +6,12 @@ namespace Retag;
 /// </summary>
 public static class Cli
 {
-    public static async Task<int> RunAsync(string[] argv)
+    public static Task<int> RunAsync(string[] argv) => RunAsync(argv, Config.Load(), LiveAgent.Create);
+
+    internal static async Task<int> RunAsync(
+        string[] argv, Config config, Func<Config, LiveAgent> createAgent)
     {
         var args = Args.Parse(argv);
-        var config = Config.Load();
         var command = args.At(0);
 
         if (command is null || args.Has("--help") || command is "help" or "-h")
@@ -23,8 +25,8 @@ public static class Cli
             return command switch
             {
                 "seed" => Commands.Seed(args),
-                "run" => await Run(args, config),
-                "propose" => await Commands.Propose(args, config),
+                "run" => await Run(args, config, createAgent),
+                "propose" => await Commands.Propose(args, config, createAgent),
                 "trace" => Commands.TraceShow(args),
                 "traces" => Commands.TracesGroupBy(args),
                 "replay" => Commands.Replay(args),
@@ -45,7 +47,7 @@ public static class Cli
         }
     }
 
-    private static async Task<int> Run(Args args, Config config)
+    private static async Task<int> Run(Args args, Config config, Func<Config, LiveAgent> createAgent)
     {
         // Rung 0, printed. Any run checks the flag before it starts.
         if (StopFlags.Active(Commands.DefaultJobId, Commands.ClassifierToolId,
@@ -53,7 +55,7 @@ public static class Cli
             return Commands.RefuseToStart(flag);
 
         if (args.Has("--gate")) return Commands.RunGate(args);
-        if (args.Has("--canary") || args.Has("--lot")) return await Commands.RunCanary(args, config);
+        if (args.Has("--canary") || args.Has("--lot")) return await Commands.RunCanary(args, config, createAgent);
         return Commands.RunJob(args);
     }
 

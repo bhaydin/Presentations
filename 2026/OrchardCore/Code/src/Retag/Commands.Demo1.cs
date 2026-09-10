@@ -109,7 +109,7 @@ public static partial class Commands
 
     // --------------------------------------------------------------- propose
 
-    public static async Task<int> Propose(Args args, Config config)
+    public static async Task<int> Propose(Args args, Config config, Func<Config, LiveAgent>? createAgent = null)
     {
         var itemId = args.Value("--item") ?? Fixtures.SlideItemId;
         var live = args.Has("--live");
@@ -130,10 +130,13 @@ public static partial class Commands
 
         if (live)
         {
-            var agent = LiveAgent.Create(config);
+            var agent = (createAgent ?? LiveAgent.Create)(config);
             var taxonomy = Fixtures.ForVersion(decision.TaxonomyVersion);
             var chosen = await agent.ClassifyAsync(
                 item.Title, item.Body, decision.Considered, taxonomy, AgentRelease);
+
+            if (chosen is null)
+                throw new InvalidDataException("invalid model response: expected one candidate term id.");
 
             Ui.Line(Ui.Leader("source", "live model call", JobValueColumn));
             Ui.Line(Ui.Leader("deployment", agent.Deployment, JobValueColumn));
