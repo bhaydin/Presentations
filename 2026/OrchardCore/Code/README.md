@@ -71,6 +71,14 @@ any of them holds the whole run before it starts. Unrelated job, tool, and
 tenant flags do not block it. The hold prints the release command for the
 blocking flag; if several flags apply, each must be released before work resumes.
 
+Replay accepts taxonomy versions `41` and `42`, defaulting to `42` when
+`--taxonomy` is omitted. A missing, malformed, or unsupported version is an
+error. Every nonempty input line must identify both a content item and a
+recorded decision. Invalid input reports an error and exits 1; an unknown ID
+is reported by its input line number. Validation completes before any replay
+results are written, so an existing `compensate.txt` is preserved on these
+errors. It belongs to the earlier successful replay, not the failed attempt.
+
 ## What is real and what is a fixture
 
 Be clear about this, because the distinction is the honest framing:

@@ -34,6 +34,7 @@ public static class Fixtures
 
     public static Taxonomy BuildTaxonomy(int version)
     {
+        ValidateVersion(version);
         var terms = new List<Term>();
 
         foreach (var (id, children) in TaxonomyData.Categories)
@@ -179,7 +180,17 @@ public static class Fixtures
 
     public static Taxonomy V42 => _v42 ??= Json.Read<Taxonomy>(Paths.Fixture("taxonomy-v42.json"));
 
-    public static Taxonomy ForVersion(int version) => version == 41 ? V41 : V42;
+    public static void ValidateVersion(int version)
+    {
+        if (version is not (Schedule.TaxonomyBefore or Schedule.TaxonomyAfter))
+            throw new InvalidDataException("unsupported taxonomy version; use 41 or 42.");
+    }
+
+    public static Taxonomy ForVersion(int version)
+    {
+        ValidateVersion(version);
+        return version == Schedule.TaxonomyBefore ? V41 : V42;
+    }
 
     public static List<KnownAnswer> KnownAnswerCases =>
         _knownAnswers ??= Json.Read<List<KnownAnswer>>(Paths.Fixture("known-answers.json"));
