@@ -1,0 +1,15 @@
+
+  scanning content items ......... 4,182 found
+  loading taxonomy v41 ........... 312 terms
+  12 tenant workers started
+  proposing ...................... 4,182 / 4,182
+  applying ....................... 4,182 updated
+
+  TENANTS:   12
+  UPDATED:   4,182
+  ERRORS:    0
+  DURATION:  00:41:16      22:40 → 23:21
+
+  done.
+
+  ERRORS: 0     HELD BY POLICY: 0

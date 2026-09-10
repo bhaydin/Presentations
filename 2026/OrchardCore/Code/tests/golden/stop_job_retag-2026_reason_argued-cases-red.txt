@@ -1,0 +1,9 @@
+
+  flag written: .run/retag-2026.stopped
+  pending lots cancelled: 8
+  job status:
+     retag-2026      STOPPED
+     seo-audit       RUNNING
+     link-check      RUNNING
+
+  ERRORS: 0     HELD BY POLICY: 0

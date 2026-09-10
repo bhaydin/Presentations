@@ -1,0 +1,15 @@
+
+  proposing  north-shore-council/emergency-services
+  source ......................... seeded decision (no model call)
+
+  retag.job  retag-2026
+  └─ tenant.lot  north-shore-council
+     └─ agent.classify  emergency-services
+      orchard.tenant_id ....... north-shore-council
+      orchard.content_item_id . north-shore-council/emergency-services
+      taxonomy.version ........ 41
+      agent.release ........... 17
+      retrieval.considered .... 4
+      decision.chosen ......... community-events
+
+  ERRORS: 0     HELD BY POLICY: 0

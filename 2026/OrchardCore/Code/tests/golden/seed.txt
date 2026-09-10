@@ -1,0 +1,11 @@
+
+  generating fixtures ............ 5 files
+  content items .................. 4,182
+  decisions ...................... 4,182
+    taxonomy v41 ................. 3,082   SUPERSEDED
+    taxonomy v42 ................. 1,100   current
+  window ......................... 22:40:00 → 23:21:16
+
+  → fixtures/decisions.json
+
+  ERRORS: 0     HELD BY POLICY: 0

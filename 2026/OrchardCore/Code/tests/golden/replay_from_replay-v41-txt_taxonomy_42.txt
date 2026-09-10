@@ -1,0 +1,8 @@
+
+  replaying 3,082 decisions under v42 ....... done
+  proposals identical ....................... 2,702
+  proposals differ .......................... 380
+
+  → 380 item ids written to compensate.txt
+
+  ERRORS: 0     HELD BY POLICY: 0
