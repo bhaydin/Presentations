@@ -65,6 +65,20 @@ Rung 0 is the one people skip. It is deliberately the least sophisticated thing
 in this repo: a file in `.run/`, and an `if` at the top of `run`. The thing that
 stops the agent should be simpler than the agent.
 
+Stops are scoped to the `retag-2026` job, its `retag-classifier` tool, or a
+tenant participating in the run. This demo runs all 12 tenants, so a stop for
+any of them holds the whole run before it starts. Unrelated job, tool, and
+tenant flags do not block it. The hold prints the release command for the
+blocking flag; if several flags apply, each must be released before work resumes.
+
+Replay accepts taxonomy versions `41` and `42`, defaulting to `42` when
+`--taxonomy` is omitted. A missing, malformed, or unsupported version is an
+error. Every nonempty input line must identify both a content item and a
+recorded decision. Invalid input reports an error and exits 1; an unknown ID
+is reported by its input line number. Validation completes before any replay
+results are written, so an existing `compensate.txt` is preserved on these
+errors. It belongs to the earlier successful replay, not the failed attempt.
+
 ## What is real and what is a fixture
 
 Be clear about this, because the distinction is the honest framing:
@@ -84,6 +98,18 @@ The canary is seeded by default even when credentials are present. A live canary
 is cheap, but it does not reproduce the scripted 14/20 — the fixture models
 release 18 broadening exactly the argued cases, and a real model does its own
 thing. Pass `--live` to see the real thing; leave it off to see the story.
+
+Live responses must contain exactly one candidate term ID. Capitalization,
+surrounding whitespace or quotes, and trailing punctuation are accepted;
+prose, multiple IDs, empty responses, and unknown terms are invalid. An invalid
+`propose --live` response reports an error and exits 1. In a canary it counts
+as a failed known answer, holds the lot with exit 0, and commits nothing for
+that tenant.
+
+If a live request fails, the demo announces its seeded fallback. Answers
+already evaluated remain in the score, including invalid or incorrect ones;
+only the remaining cases use seeded answers. A new run attempts live calls
+again.
 
 ## Steal this
 

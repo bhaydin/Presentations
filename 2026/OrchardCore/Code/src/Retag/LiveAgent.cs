@@ -16,7 +16,7 @@ public sealed class LiveAgent
 
     public string Deployment { get; }
 
-    private LiveAgent(IChatClient chat, string deployment)
+    internal LiveAgent(IChatClient chat, string deployment)
     {
         _chat = chat;
         Deployment = deployment;
@@ -42,7 +42,7 @@ public sealed class LiveAgent
     /// guidance goes in the prompt, which is exactly why the guidance change
     /// moved the answer without anything erroring.
     /// </summary>
-    public async Task<string> ClassifyAsync(
+    public async Task<string?> ClassifyAsync(
         string title, string body, IReadOnlyList<string> candidates, Taxonomy taxonomy, int release)
     {
         var guidance = string.Join("\n", candidates
@@ -71,19 +71,22 @@ public sealed class LiveAgent
         return Normalise(response.Text, candidates);
     }
 
-    /// <summary>Models add punctuation and prose. Pull the term id back out.</summary>
-    public static string Normalise(string? text, IReadOnlyList<string> candidates)
+    /// <summary>Accept exactly one candidate ID; null means the response is invalid.</summary>
+    public static string? Normalise(string? text, IReadOnlyList<string> candidates)
     {
-        var cleaned = (text ?? "").Trim().Trim('.', ',', '"', '\'', '`').Trim();
+        var cleaned = (text ?? "").Trim();
+        string previous;
+        do
+        {
+            previous = cleaned;
+            cleaned = cleaned.TrimEnd('.', ',', '!', '?', ';', ':').Trim()
+                .Trim('"', '\'', '`').Trim();
+        } while (cleaned != previous);
 
         foreach (var candidate in candidates)
             if (cleaned.Equals(candidate, StringComparison.OrdinalIgnoreCase))
                 return candidate;
 
-        foreach (var candidate in candidates)
-            if (cleaned.Contains(candidate, StringComparison.OrdinalIgnoreCase))
-                return candidate;
-
-        return cleaned.Split([' ', '\n'], StringSplitOptions.RemoveEmptyEntries).FirstOrDefault() ?? "";
+        return null;
     }
 }

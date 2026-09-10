@@ -1,4 +1,5 @@
 using System.Text;
+using Microsoft.Extensions.AI;
 using Retag;
 
 namespace Retag.Tests;
@@ -17,7 +18,13 @@ public static class Harness
             Output.Split('\n').Select(l => l.TrimEnd('\r'));
     }
 
-    public static Result Run(params string[] args)
+    public static Result Run(params string[] args) => Capture(() => Cli.RunAsync(args));
+
+    public static Result RunLive(IChatClient chat, params string[] args) => Capture(() =>
+        Cli.RunAsync(args, new Config("https://test.invalid", "test-deployment", null),
+            _ => new LiveAgent(chat, "test-deployment")));
+
+    private static Result Capture(Func<Task<int>> run)
     {
         Gate.Wait();
         var original = Console.Out;
@@ -29,7 +36,7 @@ public static class Harness
             var buffer = new StringWriter { NewLine = "\n" };
             Console.SetOut(buffer);
 
-            var exit = Cli.RunAsync(args).GetAwaiter().GetResult();
+            var exit = run().GetAwaiter().GetResult();
             return new Result(exit, buffer.ToString());
         }
         finally
