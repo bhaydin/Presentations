@@ -15,7 +15,8 @@ public static partial class Commands
     /// <summary>Column the replay leaders resolve to.</summary>
     private const int ReplayValueColumn = 46;
 
-    private const string DefaultJobId = "retag-2026";
+    public const string DefaultJobId = "retag-2026";
+    public const string ClassifierToolId = "retag-classifier";
     private const int AgentRelease = 17;
 
     public const string ReplayFile = "replay-v41.txt";
@@ -108,7 +109,7 @@ public static partial class Commands
 
     // --------------------------------------------------------------- propose
 
-    public static async Task<int> Propose(Args args, Config config)
+    public static async Task<int> Propose(Args args, Config config, Func<Config, LiveAgent>? createAgent = null)
     {
         var itemId = args.Value("--item") ?? Fixtures.SlideItemId;
         var live = args.Has("--live");
@@ -129,10 +130,13 @@ public static partial class Commands
 
         if (live)
         {
-            var agent = LiveAgent.Create(config);
+            var agent = (createAgent ?? LiveAgent.Create)(config);
             var taxonomy = Fixtures.ForVersion(decision.TaxonomyVersion);
             var chosen = await agent.ClassifyAsync(
                 item.Title, item.Body, decision.Considered, taxonomy, AgentRelease);
+
+            if (chosen is null)
+                throw new InvalidDataException("invalid model response: expected one candidate term id.");
 
             Ui.Line(Ui.Leader("source", "live model call", JobValueColumn));
             Ui.Line(Ui.Leader("deployment", agent.Deployment, JobValueColumn));
@@ -226,7 +230,11 @@ public static partial class Commands
     public static int Replay(Args args)
     {
         var from = args.Value("--from") ?? ReplayFile;
-        var target = args.Int("--taxonomy", Schedule.TaxonomyAfter);
+        var target = Schedule.TaxonomyAfter;
+        if (args.Has("--taxonomy") && !int.TryParse(args.Value("--taxonomy"),
+                NumberStyles.Integer, CultureInfo.InvariantCulture, out target))
+            throw new InvalidDataException("replay --taxonomy requires a version: 41 or 42.");
+        Fixtures.ValidateVersion(target);
         var path = Paths.Output(from);
 
         Ui.Blank();
@@ -239,17 +247,27 @@ public static partial class Commands
             return 1;
         }
 
-        var ids = File.ReadAllLines(path).Where(l => l.Length > 0).ToList();
+        var lines = File.ReadAllLines(path);
         var byId = Seeder.Load().ToDictionary(d => d.ItemId);
         var items = Fixtures.ItemsById;
+
+        // Validate the entire input before evaluating or replacing an output.
+        var ids = new List<string>();
+        for (var i = 0; i < lines.Length; i++)
+        {
+            var id = lines[i];
+            if (id.Length == 0) continue;
+            if (!byId.ContainsKey(id) || !items.ContainsKey(id))
+                throw new InvalidDataException($"replay line {i + 1}: item missing from content or decisions.");
+            ids.Add(id);
+        }
 
         var differ = new List<string>();
         var identical = 0;
 
         foreach (var id in ids)
         {
-            if (!byId.TryGetValue(id, out var decision) || !items.TryGetValue(id, out var item)) continue;
-            if (Classifier.WouldDiffer(decision, item, target)) differ.Add(id);
+            if (Classifier.WouldDiffer(byId[id], items[id], target)) differ.Add(id);
             else identical++;
         }
 

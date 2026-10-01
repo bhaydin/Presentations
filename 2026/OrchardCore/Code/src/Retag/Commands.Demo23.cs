@@ -16,18 +16,15 @@ public static partial class Commands
 
     private const int DefaultCanarySize = 40;
 
-    /// <summary>Cleared the first time a live call fails, so we degrade once and stay degraded.</summary>
-    private static bool _liveStillWorking = true;
-
-    private sealed record CaseResult(KnownAnswer Case, string Answer)
+    private sealed record CaseResult(KnownAnswer Case, string? Answer)
     {
         public bool Pass => Answer == Case.ExpectedTerm;
-        public bool ChoseParent => !Pass && Answer == Case.ParentTerm;
+        public bool ChoseParent => Answer is not null && !Pass && Answer == Case.ParentTerm;
     }
 
     // ---------------------------------------------------------- canary + lot
 
-    public static async Task<int> RunCanary(Args args, Config config)
+    public static async Task<int> RunCanary(Args args, Config config, Func<Config, LiveAgent>? createAgent = null)
     {
         var canarySize = args.Int("--canary", DefaultCanarySize);
         var requested = args.Int("--release", AgentRelease);
@@ -45,8 +42,9 @@ public static partial class Commands
         for (var i = 0; i < tenants.Count; i++)
         {
             var release = requested >= 18 && i >= RolloutTenantIndex ? requested : AgentRelease;
-            var results = await EvaluateAsync(cases, release, useLive, config);
-            useLive = useLive && _liveStillWorking;
+            var (results, liveAvailable) = await EvaluateAsync(cases, release, useLive, config,
+                createAgent ?? LiveAgent.Create);
+            useLive = liveAvailable;
             var passed = results.Count(r => r.Pass);
             var label = $"tenant {i + 1}";
 
@@ -95,7 +93,10 @@ public static partial class Commands
     private static void PrintVerdict(List<CaseResult> results, int passed, int total)
     {
         var failures = results.Where(r => !r.Pass).ToList();
-        var note = failures.Count > 0 && failures.All(f => f.ChoseParent)
+        var invalid = results.Count(r => r.Answer is null);
+        var note = invalid > 0
+            ? $"{invalid} invalid model response(s)"
+            : failures.Count > 0 && failures.All(f => f.ChoseParent)
             ? "every failure chose the parent term"
             : "see fixtures/known-answers.json";
 
@@ -110,16 +111,16 @@ public static partial class Commands
     /// fails we say so in one line and fall back to seeded behaviour rather than
     /// dropping a stack trace into the middle of a demo.
     /// </summary>
-    private static async Task<List<CaseResult>> EvaluateAsync(
-        List<KnownAnswer> cases, int release, bool useLive, Config config)
+    private static async Task<(List<CaseResult> Results, bool LiveAvailable)> EvaluateAsync(
+        List<KnownAnswer> cases, int release, bool useLive, Config config, Func<Config, LiveAgent> createAgent)
     {
-        if (!useLive) return Seeded(cases, release);
+        if (!useLive) return (Seeded(cases, release), false);
 
+        var results = new List<CaseResult>(cases.Count);
         try
         {
-            var agent = LiveAgent.Create(config);
+            var agent = createAgent(config);
             var taxonomy = Fixtures.V42;
-            var results = new List<CaseResult>(cases.Count);
 
             foreach (var c in cases)
             {
@@ -128,13 +129,15 @@ public static partial class Commands
                 results.Add(new CaseResult(c, answer));
             }
 
-            return results;
+            return (results, true);
         }
         catch (Exception ex) when (ex is not OutOfMemoryException)
         {
-            _liveStillWorking = false;
             Ui.Line($"{Ui.Indent}{Ui.Amber("live call unavailable - using seeded canary")}");
-            return Seeded(cases, release);
+            // Preserve every answer already evaluated, including invalid ones.
+            // A later transport failure must not turn an observed failure green.
+            results.AddRange(Seeded(cases.Skip(results.Count).ToList(), release));
+            return (results, false);
         }
     }
 
@@ -191,7 +194,7 @@ public static partial class Commands
         Ui.Line($"{Ui.Indent}flag written: {Ui.Amber(StopFlags.Display(scope, id))}");
         Ui.Line($"{Ui.Indent}pending lots cancelled: {cancelled}");
         Ui.Line($"{Ui.Indent}job status:");
-        PrintJobStatus(id, stopped: true);
+        PrintJobStatus(scope == StopScope.Job ? id : DefaultJobId);
         Ui.Blank();
         Ui.Footer(0, 0);
         return 0;
@@ -207,7 +210,7 @@ public static partial class Commands
             ? $"{Ui.Indent}flag cleared: {StopFlags.Display(scope, id)}"
             : $"{Ui.Indent}no flag at: {StopFlags.Display(scope, id)}");
         Ui.Line($"{Ui.Indent}job status:");
-        PrintJobStatus(id, stopped: false);
+        PrintJobStatus(scope == StopScope.Job ? id : DefaultJobId);
         Ui.Blank();
         Ui.Footer(0, 0);
         return 0;
@@ -220,11 +223,15 @@ public static partial class Commands
         return (StopScope.Job, args.Value("--job", DefaultJobId));
     }
 
-    private static void PrintJobStatus(string id, bool stopped)
+    private static void PrintJobStatus(string id)
     {
-        Ui.Line("     " + id.PadRight(16) + (stopped ? Ui.Amber("STOPPED") : Ui.Green("RUNNING")));
-        foreach (var other in StopFlags.OtherJobs)
-            Ui.Line("     " + other.PadRight(16) + Ui.Green("RUNNING"));
+        foreach (var job in new[] { id, DefaultJobId }.Concat(StopFlags.OtherJobs).Distinct())
+        {
+            var flag = job == DefaultJobId
+                ? StopFlags.Active(job, ClassifierToolId, Fixtures.Tenants.Select(t => t.Id))
+                : StopFlags.Active(job, null, []);
+            Ui.Line("     " + job.PadRight(16) + (flag is not null ? Ui.Amber("STOPPED") : Ui.Green("RUNNING")));
+        }
     }
 
     private static void TryDelete(Action delete)
@@ -243,12 +250,12 @@ public static partial class Commands
     }
 
     /// <summary>The if-statement, printed. A refused start is a hold, not an error.</summary>
-    public static int RefuseToStart(string display, string reason)
+    public static int RefuseToStart(StopFlag flag)
     {
         Ui.Blank();
-        Ui.Line($"{Ui.Indent}{Ui.Amber("❯ STOPPED BY FLAG. " + display)}");
-        if (reason.Length > 0) Ui.Line($"{Ui.Indent}  reason: {reason}");
-        Ui.Line($"{Ui.Indent}  clear with: retag release --job {DefaultJobId}");
+        Ui.Line($"{Ui.Indent}{Ui.Amber("❯ STOPPED BY FLAG. " + flag.Display)}");
+        if (flag.Reason.Length > 0) Ui.Line($"{Ui.Indent}  reason: {flag.Reason}");
+        Ui.Line($"{Ui.Indent}  clear with: {flag.ReleaseCommand}");
         Ui.Blank();
         Ui.Footer(0, 1);
         return 0;

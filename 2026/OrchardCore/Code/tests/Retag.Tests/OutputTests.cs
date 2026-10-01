@@ -245,7 +245,8 @@ public class BehaviourTests
         Assert.Equal(first.Output, second.Output);
         Assert.Equal(0, first.ExitCode);
         Assert.False(File.Exists(Paths.Output(Commands.ReplayFile)));
-        Assert.Null(StopFlags.Active());
+        Assert.Null(StopFlags.Active(Commands.DefaultJobId, Commands.ClassifierToolId,
+            Fixtures.Tenants.Select(t => t.Id)));
     }
 }
 

@@ -20,12 +20,15 @@ public static class Classifier
         return h;
     }
 
-    public static string Choose(ContentItem item, int taxonomyVersion) =>
-        item.EmergencyPreparedness
+    public static string Choose(ContentItem item, int taxonomyVersion)
+    {
+        Fixtures.ValidateVersion(taxonomyVersion);
+        return item.EmergencyPreparedness
             ? taxonomyVersion == Schedule.TaxonomyBefore
                 ? Fixtures.EmergencyTermV41
                 : Fixtures.EmergencyTerm
             : item.TrueTerm;
+    }
 
     /// <summary>The shortlist the agent had in front of it. Always contains the chosen term.</summary>
     public static List<string> Considered(ContentItem item, int taxonomyVersion, Taxonomy taxonomy)

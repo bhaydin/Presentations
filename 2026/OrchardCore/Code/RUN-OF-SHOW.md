@@ -171,6 +171,7 @@ replay. Everything else in demo 1 is setup for those two frames.
 | `❯ STOPPED BY FLAG` when you did not expect it | Same | Same |
 | Live call fails or hangs | Endpoint, key or deployment | Drop `--live`. Seeded output is identical in shape. |
 | `live call unavailable - using seeded canary` | Credentials present but the call failed | Harmless — it already fell back. Drop `--live` for the retake. |
+| `invalid model response` | The reply was not exactly one candidate term ID | A proposal exits 1; a canary holds with exit 0. Inspect the reply or use the seeded demo for the retake. |
 | `fixtures missing` | Fresh clone, nothing seeded | `retag seed` |
 | Canary holds at tenant 1 | `--live` on demo 2 | Drop `--live` |
 | Colours missing | `NO_COLOR` is set, or output is piped | `unset NO_COLOR`, and do not pipe |
