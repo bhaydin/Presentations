@@ -21,3 +21,4 @@ This repository is organized by **year** and then by **event**:
 | Date | Event | Location |
 |------|-------|----------|
 | 2026-03-14 | [Chippewa Valley Code Camp](2026/ChippewaValleyCodeCamp/README.md) | Eau Claire, WI |
+| 2026-10-01–2026-10-02 | [Cloud And AI Summit](2026/CloudAndAISummit/README.md) | |
